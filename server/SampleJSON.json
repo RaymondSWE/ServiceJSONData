@@ -1,0 +1,19 @@
+{
+  "Id": 1003375,
+  "Timestamp": "2016-03-01 11:54:29.190",
+  "Serial": 142342,
+  "Setting": "C",
+  "RawSensorData": {
+    "A": 4.7232,
+    "B": 5.2329,
+    "C": 4.1323,
+    "D": 2.3492,
+    "E": 3.1239,
+    "F": 3.2442,
+    "G": "U2FtcGxlIE1lYXN1cmVtZW50IERhdGE="
+  },
+  "Temperature": 23.423,
+  "Pressure": 232.142,
+  "Length": 0.013,
+  "Noise": 13.224
+}
