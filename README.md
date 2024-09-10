@@ -1,10 +1,20 @@
+# Hey Anna
+
+I created a UML diagram to illustrate how I structured the solution and planned to solve the problem step by step. Please send me your GitHub username so I can add you to the repository. I want to ensure transparency regarding the timing and that everything was done within the given threshold. The backend framework is SpringBoot and a dependency called Lombok, Lombok is a dependency that helps to reduce boilerplate codes, such as getters/setters, no argument constructors, and argument constructors and has a lot more different annotations to reduce boilerplate code.
+
+The code is structured in a straightforward manner:
+- **Models**: Hold the data 
+- **Service**: Contains the business logic, including validation.
+- **Custom Exception**: Handles errors by sending objects, and I used the **Builder design pattern** to implement these exception. We could design more about the different design patterns in the interview.
+- **Controller**: Handles the  HTTP Request and Responses
+
+Everything has been tested using **Postman**. The URL for testing is:
+**localhost:8080/api/validate**
+
+The POST-request should include a JSON body containing **MeasurementData** and a nested object called **RawSensordata**, there is an example file in the root directory to find an example of what to send in, file is called [sampleJSON.json](https://github.com/RaymondSWE/ServiceJSONData/blob/main/SampleJSON.json)
 
 
-Hey, I tried to create a UML diagram for how i would structure it and I would solve it step by step. Please send your github username so I can add you to the repository, as I want to be transparent with the timing and that i was within the threshold. 
 
-The code is pretty simple, the models holds the data. The service handle logic, and the custom excpetion sends objects, which I used the builder design pattern to implement these.
-
-Everything is tested with postman the url for testing is localhost:8080/api/validate with a json body that contains the measurementdata and the nested object rawsensordata
-
-Regards,
+Best regards,
 Raman
+
