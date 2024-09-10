@@ -1,3 +1,5 @@
+As the deadline approached, I rushed through the original README. While this version was completed after deadline it is readable compared to the initial readme.
+
 # Hey Anna
 
 I created a UML diagram to illustrate how I structured the solution and planned to solve the problem step by step. Please send me your GitHub username so I can add you to the repository. I want to ensure transparency regarding the timing and that everything was done within the given threshold. The backend framework is SpringBoot and a dependency called Lombok, Lombok is a dependency that helps to reduce boilerplate codes, such as getters/setters, no argument constructors, and argument constructors and has a lot more different annotations to reduce boilerplate code.
