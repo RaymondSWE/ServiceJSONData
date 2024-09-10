@@ -5,7 +5,7 @@ I created a UML diagram to illustrate how I structured the solution and planned 
 The code is structured in a straightforward manner:
 - **Models**: Hold the data 
 - **Service**: Contains the business logic, including validation.
-- **Custom Exception**: Handles errors by sending objects, and I used the **Builder design pattern** to implement these exception. We could design more about the different design patterns in the interview.
+- **Custom Exception**: Handles errors by sending objects, and I used the **Builder design pattern** to implement these exception. We could discuss more about the different design patterns in the interview.
 - **Controller**: Handles the  HTTP Request and Responses
 
 Everything has been tested using **Postman**. The URL for testing is:
