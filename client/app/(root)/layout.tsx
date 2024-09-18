@@ -21,7 +21,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex min-h-screen">
       <Sidebar />
       <main
-        className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-[350px]" : "ml-[150px]"}`}
+        className={`flex-1 transition-transform duration-300 ${
+          isSidebarOpen ? "transform translate-x-0 md:translate-x-[250px]" : "transform translate-x-0"
+        }`}
       >
         {children}
       </main>
