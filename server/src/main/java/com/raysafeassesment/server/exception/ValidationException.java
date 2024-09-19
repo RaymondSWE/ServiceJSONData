@@ -1,4 +1,4 @@
-package com.raysafeassesment.server.excpetion;
+package com.raysafeassesment.server.exception;
 
 public class ValidationException extends RuntimeException{
     public ValidationException(String message) {

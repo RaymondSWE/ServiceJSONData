@@ -1,5 +1,6 @@
 package com.raysafeassesment.server.model;
 
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Embeddable
 public class RawSensorData {
     private double a;
     private double b;
@@ -17,5 +19,4 @@ public class RawSensorData {
     private double e;
     private double f;
     private String g;
-
 }

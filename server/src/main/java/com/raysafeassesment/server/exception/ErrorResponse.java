@@ -1,4 +1,4 @@
-package com.raysafeassesment.server.excpetion;
+package com.raysafeassesment.server.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

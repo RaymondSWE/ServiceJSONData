@@ -1,5 +1,6 @@
 package com.raysafeassesment.server.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,14 +12,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "measurement_data")
 public class MeasurementData {
-    private int id;
-    private String timestamp;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime timestamp;
     private String serial;
-    private RawSensorData rawSensorData;
     private double temperature;
     private double pressure;
     private double length;
     private double noise;
 
+    @Embedded
+    private RawSensorData rawSensorData;
 }
