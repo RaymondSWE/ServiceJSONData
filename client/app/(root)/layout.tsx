@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <Sidebar />
       <main
         className={`flex-1 transition-transform duration-300 ${
-          isSidebarOpen ? "transform translate-x-0 md:translate-x-[250px]" : "transform translate-x-0"
+          isSidebarOpen ? "transform translate-x-0 md:translate-x-[200px]" : "transform translate-x-0"
         }`}
       >
         {children}
