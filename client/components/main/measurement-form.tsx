@@ -64,6 +64,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         f: 0,
         g: "",
       },
+      timestamp: "",
     },
   });
 
@@ -82,7 +83,6 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       } else {
         await axios.post("http://localhost:8080/api/measurements", 
             data,
-
         );
         
       }
