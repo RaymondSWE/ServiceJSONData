@@ -33,9 +33,8 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     try {
       setLoading(true);
       await deleteMeasurement(Number(data.id));
-      router.push(`/measurement/view`);
-      router.refresh();
-      toast.success("Measurement deleted successfully.");
+      window.location.reload(); // no idea why router.reload() doesn't work
+      toast.success("Measurement deleted successfully. 🗑️");
     } catch (error) {
       toast.error("Failed to delete measurement. Please try again." + error);
     } finally {
