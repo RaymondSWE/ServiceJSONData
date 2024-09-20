@@ -7,10 +7,9 @@ import { format } from "date-fns";
 import { useFetchAllMeasurements } from "@/hooks/useMeasurement"; 
 
 const MeasurementPage = () => {
-  const { data, error, loading } = useFetchAllMeasurements(); 
+  const { data, loading } = useFetchAllMeasurements(); 
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   const formattedMeasurements: MeasurementColumn[] = (data || []).map((measurement) => {
     

@@ -7,7 +7,6 @@ interface ErrorResponse {
   message: string;
 }
 
-// Centralized error handler
 export function handleError(error: AxiosError<ErrorResponse> | unknown): void {
   if (error instanceof AxiosError) {
     if (error.response) {

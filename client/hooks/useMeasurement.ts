@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchAllMeasurements, fetchMeasurementById } from '../services/measurement-service';
 import { MeasurementData } from '../types/types';
+import { handleError } from '@/lib/error-handler';
 
+// TODO:: add loader component to show loading state
 export function useFetchAllMeasurements() {
   const [data, setData] = useState<MeasurementData[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export function useFetchAllMeasurements() {
         const measurements = await fetchAllMeasurements(); 
         setData(measurements);
       } catch (error) {
-        setError((error as Error).message);
+        handleError(error);
       } finally {
         setLoading(false);
       }
@@ -22,12 +23,11 @@ export function useFetchAllMeasurements() {
     fetchData();
   }, []);
 
-  return { data, error, loading };
+  return { data, loading };
 }
 
 export function useFetchMeasurementById(id: number) {
   const [data, setData] = useState<MeasurementData | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function useFetchMeasurementById(id: number) {
         const measurement = await fetchMeasurementById(id);
         setData(measurement);
       } catch (error) {
-        setError((error as Error).message);
+        handleError(error);
       } finally {
         setLoading(false);
       }
@@ -45,5 +45,5 @@ export function useFetchMeasurementById(id: number) {
     fetchData();
   }, [id]);
 
-  return { data, error, loading };
+  return { data, loading };
 }

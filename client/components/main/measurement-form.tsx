@@ -64,7 +64,6 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         f: 0,
         g: "",
       },
-      timestamp: "",
     },
   });
 
@@ -72,9 +71,11 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
   const onSubmit = async (data: MeasurementFormValues) => {
     try {
       setLoading(true);
-      if (!initialMeasurement) {
-        data.timestamp = new Date().toISOString(); 
-      }
+      const requestData: MeasurementData = {
+        ...data,
+        timestamp: initialMeasurement?.timestamp || new Date().toISOString(),
+      };
+
       if (initialMeasurement) {
         await axios.put(
             `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
@@ -82,9 +83,8 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         );
       } else {
         await axios.post("http://localhost:8080/api/measurements", 
-            data,
+          requestData,
         );
-        
       }
       router.push("/measurement/view");
       router.refresh();
@@ -95,7 +95,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       setLoading(false);
     }
   };
-
+  
   const onDelete = async () => {
     try {
       setLoading(true);
@@ -361,7 +361,6 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
                 </FormItem>
               )}
             />
-            
           </div>
           <Button disabled={loading} className="mt-4" type="submit" size="sm">
             {action}

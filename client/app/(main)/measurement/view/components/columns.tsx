@@ -49,7 +49,7 @@ export const columns: ColumnDef<MeasurementColumn>[] = [
     accessorKey: "sensors",
     header: "Sensors",
     cell: ({ row }) => (
-      <div className="grid grid-cols-2 gap-y-2">
+      <div className="grid grid-cols-3 gap-y-1">
         <div><strong>A:</strong> {row.original.sensors.a}</div>
         <div><strong>B:</strong> {row.original.sensors.b}</div>
         <div><strong>C:</strong> {row.original.sensors.c}</div>

@@ -5,13 +5,12 @@ import { MeasurementForm } from '@/components/main/measurement-form';
 import React from 'react';
 import { useParams } from 'next/navigation';
 
-const MeasurementPage = ({ params }: { params: { measurementId: string } }) => {
+const MeasurementIdPage = () => {
   const { measurementId } = useParams();  
   const id = Number(measurementId);       
-  const { data, loading, error } = useFetchMeasurementById(id);  
+  const { data, loading, } = useFetchMeasurementById(id);  
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div>Loading...</div>; 
 
   return (
     <div className="flex-col">
@@ -22,4 +21,4 @@ const MeasurementPage = ({ params }: { params: { measurementId: string } }) => {
   );
 };
 
-export default MeasurementPage;
+export default MeasurementIdPage;
