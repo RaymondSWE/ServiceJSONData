@@ -36,18 +36,7 @@ export function getMenuList(pathname: string): Group[] {
           label: "Use-Case Assignment",
           active: pathname.includes("/use-case"),
           icon: LayoutGrid,
-          submenus: [
-            {
-              href: `/use-case/implementation`,
-              label: "Implementation",
-              active: pathname.includes("/use-case/implementation"),
-            },
-            {
-              href: `/use-case/json-validation`,
-              label: "JSON Validation",
-              active: pathname.includes("/use-case/json-validation"),
-            },
-          ],
+          submenus: [],
         },
         {
           href: `/measurement`,

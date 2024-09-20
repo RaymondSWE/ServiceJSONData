@@ -12,6 +12,15 @@ export type MeasurementColumn = {
   pressure: number;
   length: number;
   noise: number;
+  sensors: {
+    a: number;
+    b: number;
+    c: number;
+    d: number;
+    e: number;
+    f: number;
+    g: string;
+  };
   createdAt: string;
 };
 
@@ -35,6 +44,21 @@ export const columns: ColumnDef<MeasurementColumn>[] = [
   {
     accessorKey: "noise",
     header: "Noise (dB)",
+  },
+  {
+    accessorKey: "sensors",
+    header: "Sensors",
+    cell: ({ row }) => (
+      <div className="grid grid-cols-2 gap-y-2">
+        <div><strong>A:</strong> {row.original.sensors.a}</div>
+        <div><strong>B:</strong> {row.original.sensors.b}</div>
+        <div><strong>C:</strong> {row.original.sensors.c}</div>
+        <div><strong>D:</strong> {row.original.sensors.d}</div>
+        <div><strong>E:</strong> {row.original.sensors.e}</div>
+        <div><strong>F:</strong> {row.original.sensors.f}</div>
+        <div><strong>G:</strong> {row.original.sensors.g}</div>
+      </div>
+    ),
   },
   {
     accessorKey: "createdAt",

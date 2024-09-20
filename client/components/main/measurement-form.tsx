@@ -20,44 +20,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { MeasurementData } from "@/types/types";
-
+import { formSchema } from "@/schemas/measurement";
+import { handleError } from "@/lib/error-handler";
 interface MeasurementFormProps {
   initialMeasurement: MeasurementData | null;
 }
 
-// Put the MAX and MIN in environment variables
-const formSchema = z.object({
-    serial: z.string().min(1, "Serial is required").max(255, "Serial must be 255 characters or less"),
-    temperature: z.coerce
-      .number()
-      .min(-1000, "Temperature must be greater than or equal to -1000")
-      .max(1000, "Temperature must be less than or equal to 1000"),
-    pressure: z.coerce
-      .number()
-      .min(-1000, "Pressure must be greater than or equal to -1000")
-      .max(1000, "Pressure must be less than or equal to 1000"),
-    length: z.coerce
-      .number()
-      .min(-1000, "Length must be greater than or equal to -1000")
-      .max(1000, "Length must be less than or equal to 1000"),
-    noise: z.coerce
-      .number()
-      .min(-1000, "Noise must be greater than or equal to -1000")
-      .max(1000, "Noise must be less than or equal to 1000"),
-    rawSensorData: z.object({
-      a: z.coerce.number(),
-      b: z.coerce.number(),
-      c: z.coerce.number(),
-      d: z.coerce.number(),
-      e: z.coerce.number(),
-      f: z.coerce.number(),
-      g: z.string(),
-    }),
-  });
-  
 type MeasurementFormValues = z.infer<typeof formSchema>;
 
 export const MeasurementForm: React.FC<MeasurementFormProps> = ({
@@ -65,8 +36,6 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const params = useParams();
   const router = useRouter();
 
   const title = initialMeasurement ? "Edit Measurement" : "Create Measurement";
@@ -102,6 +71,9 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
   const onSubmit = async (data: MeasurementFormValues) => {
     try {
       setLoading(true);
+      if (!initialMeasurement) {
+        data.timestamp = new Date().toISOString(); 
+      }
       if (initialMeasurement) {
         await axios.put(
             `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
@@ -118,7 +90,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       router.refresh();
       toast.success(toastMessage);
     } catch (error) {
-      toast.error("Failed to save measurements. Please try again."); // fix more precise error message
+      handleError(error);
     } finally {
       setLoading(false);
     }
@@ -134,7 +106,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         toast.success("Measurement deleted successfully.");
       }
     } catch (error) {
-      toast.error("Failed to delete measurement. Please try again.");
+      handleError(error);
     } finally {
       setLoading(false);
       setOpen(false);

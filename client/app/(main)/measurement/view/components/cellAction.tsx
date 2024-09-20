@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, Edit2, MoreHorizontal, Trash2 } from "lucide-react";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { deleteMeasurement } from "@/services/measurement-service";
 
@@ -21,7 +21,6 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
-  const params = useParams();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   
