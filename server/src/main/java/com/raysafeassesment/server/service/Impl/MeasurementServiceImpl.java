@@ -3,8 +3,10 @@ package com.raysafeassesment.server.service.Impl;
 import com.raysafeassesment.server.exception.EntityNotFoundException;
 import com.raysafeassesment.server.exception.ValidationException;
 import com.raysafeassesment.server.model.MeasurementData;
+import com.raysafeassesment.server.model.RawSensorData;
 import com.raysafeassesment.server.repository.MeasurementRepository;
 import com.raysafeassesment.server.service.MeasurementService;
+import com.raysafeassesment.server.utils.MeasurementUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class MeasurementServiceImpl implements MeasurementService {
     private static final double MAX_LENGTH = 1000.00;
     private static final double MIN_NOISE = -1000.00;
     private static final double MAX_NOISE = 1000.00;
+    private static final double MIN_SENSOR_VALUE = -1000.00;
+    private static final double MAX_SENSOR_VALUE = 1000.00;
 
     private final MeasurementRepository measurementRepository;
 
@@ -33,21 +37,18 @@ public class MeasurementServiceImpl implements MeasurementService {
     @Override
     public boolean validationOfMeasurementData(MeasurementData data) {
 
-        if (data.getTemperature() < MIN_TEMPERATURE || data.getTemperature() > MAX_TEMPERATURE) {
-            throw new ValidationException("Temperature out of range, Please use within the range -1000 to 1000: " + data.getTemperature());
-        }
+        MeasurementUtils.validateRange(data.getTemperature(), MIN_TEMPERATURE, MAX_TEMPERATURE, "Temperature");
+        MeasurementUtils.validateRange(data.getPressure(), MIN_PRESSURE, MAX_PRESSURE, "Pressure");
+        MeasurementUtils.validateRange(data.getLength(), MIN_LENGTH, MAX_LENGTH, "Length");
+        MeasurementUtils.validateRange(data.getNoise(), MIN_NOISE, MAX_NOISE, "Noise");
 
-        if (data.getPressure() < MIN_PRESSURE || data.getPressure() > MAX_PRESSURE) {
-            throw new ValidationException("Pressure out of range, Please use within the range -1000 to 1000: " + data.getPressure());
-        }
-
-        if (data.getLength() < MIN_LENGTH || data.getLength() > MAX_LENGTH) {
-            throw new ValidationException("Length out of range, Please use within the range -1000 to 1000: " + data.getLength());
-        }
-
-        if (data.getNoise() < MIN_NOISE || data.getNoise() > MAX_NOISE) {
-            throw new ValidationException("Noise out of range, Please use within the range -1000 to 1000: " + data.getNoise());
-        }
+        RawSensorData sensorData = data.getRawSensorData();
+        MeasurementUtils.validateRange(sensorData.getA(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor A");
+        MeasurementUtils.validateRange(sensorData.getB(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor B");
+        MeasurementUtils.validateRange(sensorData.getC(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor C");
+        MeasurementUtils.validateRange(sensorData.getD(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor D");
+        MeasurementUtils.validateRange(sensorData.getE(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor E");
+        MeasurementUtils.validateRange(sensorData.getF(), MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, "Sensor F");
 
         return true;
     }
@@ -55,7 +56,6 @@ public class MeasurementServiceImpl implements MeasurementService {
     @Override
     public MeasurementData createMeasurementData(MeasurementData data) {
         validationOfMeasurementData(data);
-
         return measurementRepository.save(data);
     }
 

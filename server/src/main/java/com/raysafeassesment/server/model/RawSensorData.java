@@ -1,6 +1,7 @@
 package com.raysafeassesment.server.model;
 
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,7 @@ public class RawSensorData {
     private double d;
     private double e;
     private double f;
+
+    @NotNull(message = "Sensor G value is required")
     private String g;
 }
