@@ -5,7 +5,7 @@ import { Heading } from "@/components/ui/heading"
 import { useFetchAllMeasurements } from "@/hooks/useMeasurement"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Button } from "../ui/button"
-import {  MenuIcon } from "lucide-react"
+import {  MenuIcon, CheckIcon } from "lucide-react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 import {
   Card,
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card"
 import { Bar, BarChart, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts"
 import { Separator } from "../ui/separator"
+import { computeGlobalStats } from "@/lib/data-utils"
 
 type GlobalStats = {
     [key: string]: {
@@ -97,25 +98,7 @@ export function MeasurementDataCharts() {
     const globalStats = useMemo<GlobalStats  | null>(() => {
     if (!devicesData) return null
 
-    const stats: GlobalStats = {};
-
-    sensorFields.forEach((field) => {
-      const values = devicesData.map((device) => {
-        const keys = field.key.split('.')
-        return keys.reduce((acc, key) => acc[key], device)
-      })
-
-      stats[field.name] = {
-        min: Math.min(...values.filter((value) => typeof value === 'number')),
-        max: Math.max(...values.filter((value) => typeof value === 'number')),
-        avg: values
-        .filter((value) => typeof value === 'number')
-        .reduce((acc, value) => acc + value, 0) / values.length
-      }
-    })
-
-
-    return stats
+    return computeGlobalStats(devicesData, sensorFields);
   }, [devicesData])
 
   
