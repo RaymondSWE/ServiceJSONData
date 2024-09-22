@@ -3,10 +3,6 @@
 import { useState, useMemo } from "react"
 import { Heading } from "@/components/ui/heading"
 import { useFetchAllMeasurements } from "@/hooks/useMeasurement"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { Button } from "../ui/button"
-import {  MenuIcon, CheckIcon } from "lucide-react"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 import {
   Card,
   CardContent,
@@ -17,6 +13,8 @@ import {
 import { Bar, BarChart, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts"
 import { Separator } from "../ui/separator"
 import { computeGlobalStats } from "@/lib/data-utils"
+import { DeviceSelector } from "../ui/device-selector"
+import { StatCard } from "../ui/stat-card"
 
 type GlobalStats = {
     [key: string]: {
@@ -47,10 +45,6 @@ type GlobalStats = {
 
 export function MeasurementDataCharts() {
   const { data: devicesData, loading } = useFetchAllMeasurements()
-  const [deviceComboboxOpen, setDeviceComboboxOpen] = useState(false)
-  const [minFieldComboboxOpen, setMinFieldComboboxOpen] = useState(false)
-  const [maxFieldComboboxOpen, setMaxFieldComboboxOpen] = useState(false)
-  const [avgFieldComboboxOpen, setAvgFieldComboboxOpen] = useState(false)
 
   const [selectedDeviceSerial, setSelectedDeviceSerial] = useState<string | null>(null)
   const [selectedMinField, setSelectedMinField] = useState<string>("Temperature")
@@ -97,7 +91,6 @@ export function MeasurementDataCharts() {
       ]
     const globalStats = useMemo<GlobalStats  | null>(() => {
     if (!devicesData) return null
-
     return computeGlobalStats(devicesData, sensorFields);
   }, [devicesData])
 
@@ -106,6 +99,7 @@ export function MeasurementDataCharts() {
   const getSelectedDeviceValue = (fieldKey: string): DeviceValue  => {
     if (!selectedDevice) return undefined;
     const keys = fieldKey.split('.');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return keys.reduce((acc: any, key: string) => acc[key], selectedDevice);
   }
   
@@ -116,7 +110,7 @@ export function MeasurementDataCharts() {
     globalStatsValue: number | undefined
   ): JSX.Element => {
     if (deviceValue === undefined || globalStatsValue === undefined) {
-      return <span className="text-gray-500">• No Global Data</span>;
+      return <span className="text-gray-500">• N/A</span>;
     }
   
     if (deviceValue > globalStatsValue) {
@@ -149,252 +143,48 @@ export function MeasurementDataCharts() {
           description="Select a device to view its data."
         />
       )}
+      <DeviceSelector
+        availableDevices={availableDevices}
+        selectedDeviceSerial={selectedDeviceSerial}
+        setSelectedDeviceSerial={setSelectedDeviceSerial}
+        />
 
-      <Popover open={deviceComboboxOpen} onOpenChange={setDeviceComboboxOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={deviceComboboxOpen}
-            className="w-[200px] justify-between mt-4"
-          >
-            {selectedDeviceSerial
-              ? `Device ${selectedDeviceSerial}`
-              : "Select a device serial"}
-            <MenuIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <Command>
-            <CommandInput
-              placeholder="Search by device serial.."
-              className="h-9"
-            />
-            <CommandList>
-              <CommandEmpty>No device found.</CommandEmpty>
-              <CommandGroup title="Devices">
-                {availableDevices.map((device) => (
-                  <CommandItem
-                    key={device.value}
-                    value={device.value}
-                    onSelect={(currentValue) => {
-                      setSelectedDeviceSerial(currentValue)
-                      setDeviceComboboxOpen(false)
-                    }}
-                  >
-                    {device.label}
-                    <CheckIcon
-                      className={`ml-auto h-4 w-4 ${
-                        selectedDeviceSerial === device.value
-                          ? "opacity-100"
-                          : "opacity-0"
-                      }`}
-                    />
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover>
       <Separator className="my-4 "/>
 
         {selectedDevice && globalStats && (
         <div className="grid grid-cols-3 gap-4">
-          <Card>
-          <CardHeader className="flex justify-between items-center flex-row">
-          <CardTitle className="text-lg">Min Value</CardTitle>
-              <Popover open={minFieldComboboxOpen} onOpenChange={setMinFieldComboboxOpen}>
-                <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[100px] text-xs p-2 flex items-center justify-between">
-                    {selectedMinField}
-                    <MenuIcon className="ml-1 h-3 w-3 shrink-0 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent>
-                  <Command>
-                    <CommandInput placeholder="Select a sensor field..." className="text-xs" />
-                    <CommandList>
-                      {sensorFields.map((field) => (
-                        <CommandItem
-                          key={field.name}
-                          value={field.name}
-                          onSelect={(currentValue) => {
-                            setSelectedMinField(currentValue)
-                            setMinFieldComboboxOpen(false)
-                          }}
-                        >
-                          {field.name}
-                          <CheckIcon
-                            className={`ml-auto h-3 w-3 ${
-                              selectedMinField === field.name
-                                ? "opacity-100"
-                                : "opacity-0"
-                            }`}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-            </CardHeader>
-            <CardContent>
-                <div className="flex flex-col space-y-1 bg-gray-50 p-4 rounded-md shadow-sm">
-                    <div className="flex items-center justify-between">
-                    {(() => {
-                        const selectedFieldKey = sensorFields.find(field => field.name === selectedMinField)?.key;
-                        const selectedDeviceValue = getSelectedDeviceValue(selectedFieldKey);
-                        const globalMinValue = globalStats?.[selectedMinField]?.min;
+         <StatCard
+            fieldLabel="Min Value"
+            sensorFields={sensorFields}
+            selectedField={selectedMinField}
+            onSelectField={setSelectedMinField}
+            selectedDeviceValue={getSelectedDeviceValue(sensorFields.find(field => field.name === selectedMinField)?.key || '')}
+            globalStatValue={globalStats[selectedMinField]?.min}
+            comparisonIndicator={getComparisonIndicator(getSelectedDeviceValue(sensorFields.find(field => field.name === selectedMinField)?.key || ''), globalStats[selectedMinField]?.min)}
+            globalStatLabel="Overall Min"
+          />
 
-                        return (
-                        <>
-                            <p className="text-lg font-bold text-gray-800">
-                            {selectedDeviceValue}
-                            </p>
-                            <span className="flex items-center space-x-2">
-                            {getComparisonIndicator(selectedDeviceValue, globalMinValue)}
-                            <span className="text-xs text-gray-600">(Overall Min: {globalMinValue})</span>
- 
-                            </span>
-                        </>
-                        );
-                    })()}
-                    </div>
-                </div>
-            </CardContent>
-          </Card>
+            <StatCard
+            fieldLabel="Max Value"
+            sensorFields={sensorFields}
+            selectedField={selectedMaxField}
+            onSelectField={setSelectedMaxField}
+            selectedDeviceValue={getSelectedDeviceValue(sensorFields.find(field => field.name === selectedMaxField)?.key || '')}
+            globalStatValue={globalStats[selectedMaxField]?.max}
+            comparisonIndicator={getComparisonIndicator(getSelectedDeviceValue(sensorFields.find(field => field.name === selectedMaxField)?.key || ''), globalStats[selectedMaxField]?.max)}
+            globalStatLabel="Overall Max"
+          />
 
-          {/* Max Value Card with Combobox */}
-          <Card>
-            <CardHeader className="flex justify-between items-center flex-row">
-              <CardTitle className="text-lg">Max Value</CardTitle>
-              <Popover open={maxFieldComboboxOpen} onOpenChange={setMaxFieldComboboxOpen}>
-                <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[100px] text-xs p-2 flex items-center justify-between">
-                    {selectedMaxField}
-                    <MenuIcon className="ml-1 h-3 w-3 shrink-0 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent>
-                  <Command>
-                    <CommandInput placeholder="Select a sensor field..." />
-                    <CommandList>
-                      {sensorFields.map((field) => (
-                        <CommandItem
-                          key={field.name}
-                          value={field.name}
-                          onSelect={(currentValue) => {
-                            setSelectedMaxField(currentValue)
-                            setMaxFieldComboboxOpen(false)
-                          }}
-                        >
-                          {field.name}
-                          <CheckIcon
-                            className={`ml-auto h-3 w-3 ${
-                              selectedMaxField === field.name
-                                ? "opacity-100"
-                                : "opacity-0"
-                            }`}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-            </CardHeader>
-            <CardContent>
-            <div className="flex flex-col space-y-1 bg-gray-50 p-4 rounded-md shadow-sm">
-                <div className="flex items-center justify-between">
-                {(() => {
-                    const selectedFieldKey = sensorFields.find(field => field.name === selectedMaxField)?.key;
-                    const selectedDeviceValue = getSelectedDeviceValue(selectedFieldKey);
-                    const globalMaxValue = globalStats?.[selectedMaxField]?.max;
-
-                    return (
-                    <>
-                        <p className="text-lg font-bold text-gray-800">
-                        {selectedDeviceValue}
-                        </p>
-                        <span className="flex items-center space-x-2">
-                        {getComparisonIndicator(selectedDeviceValue, globalMaxValue)}
-                        <span className="text-xs text-gray-600">(Overall Max: {globalMaxValue})</span>
-
-                        </span>
-                    </>
-                    );
-                })()}
-                </div>
-            </div>
-            </CardContent>
-
-          </Card>
-
-          {/* Avg Value Card with Combobox */}
-          <Card>
-            <CardHeader className="flex justify-between items-center flex-row">
-              <CardTitle className="text-lg">Avg Value</CardTitle>
-              <Popover open={avgFieldComboboxOpen} onOpenChange={setAvgFieldComboboxOpen}>
-                <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[100px] text-xs p-2 flex items-center justify-between">
-                    {selectedAvgField}
-                    <MenuIcon className="ml-1 h-3 w-3 shrink-0 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent>
-                  <Command>
-                    <CommandInput placeholder="Select a sensor field..." />
-                    <CommandList>
-                      {sensorFields.map((field) => (
-                        <CommandItem
-                          key={field.name}
-                          value={field.name}
-                          onSelect={(currentValue) => {
-                            setSelectedAvgField(currentValue)
-                            setAvgFieldComboboxOpen(false)
-                          }}
-                        >
-                          {field.name}
-                          <CheckIcon
-                            className={`ml-auto h-3 w-3 ${
-                              selectedAvgField === field.name
-                                ? "opacity-100"
-                                : "opacity-0"
-                            }`}
-                          />
-                        </CommandItem>
-                      ))}
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-            </CardHeader>
-            <CardContent>
-                <div className="flex flex-col space-y-1 bg-gray-50 p-4 rounded-md shadow-sm">
-                    <div className="flex items-center justify-between">
-                    {(() => {
-                        const selectedFieldKey = sensorFields.find(field => field.name === selectedAvgField)?.key;
-                        const selectedDeviceValue = getSelectedDeviceValue(selectedFieldKey);
-                        const globalAvgValue = globalStats?.[selectedAvgField]?.avg;
-
-                        return (
-                        <>
-                            <p className="text-lg font-bold text-gray-800">
-                            {selectedDeviceValue}
-                            </p>
-                            <span className="flex items-center space-x-2">
-                            {getComparisonIndicator(selectedDeviceValue, globalAvgValue)}
-                            <span className="text-xs text-gray-600">(Overall Avg: {globalAvgValue})</span>
-                            </span>
-                        </>
-                        );
-                    })()}
-                    </div>
-                </div>
-                </CardContent>
-
-          </Card>
+            <StatCard
+            fieldLabel="Avg Value"
+            sensorFields={sensorFields}
+            selectedField={selectedAvgField}
+            onSelectField={setSelectedAvgField}
+            selectedDeviceValue={getSelectedDeviceValue(sensorFields.find(field => field.name === selectedAvgField)?.key || '')}
+            globalStatValue={globalStats[selectedAvgField]?.avg}
+            comparisonIndicator={getComparisonIndicator(getSelectedDeviceValue(sensorFields.find(field => field.name === selectedAvgField)?.key || ''), globalStats[selectedAvgField]?.avg)}
+            globalStatLabel="Overall Avg"
+            />
         </div>
       )}
 
