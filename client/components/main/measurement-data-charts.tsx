@@ -90,6 +90,7 @@ export function MeasurementDataCharts() {
     return keys.reduce((acc: any, key: string) => acc[key], selectedMeasurement);
   };
 
+  //TODO:: GetComparisionIndicator and getBarColorBasedOnComparison are similar, can be refactored
   const getComparisonIndicator = (
     measurementValue: number | undefined,
     globalStatsValue: number | undefined,
@@ -127,7 +128,7 @@ export function MeasurementDataCharts() {
       return "red";
     }
   };
-
+  //TODO: Implement the following: Loading Spinner Component
   if (loading) {
     return <p>Loading...</p>;
   }
