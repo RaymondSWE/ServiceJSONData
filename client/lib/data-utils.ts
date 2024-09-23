@@ -8,7 +8,7 @@ export const getValueFromNestedObject = (object: any, keys: string[]): any => {
 // Compute stats for fields (min, max, avg)
 export const computeGlobalStats = (
   devicesData: MeasurementData[],
-  sensorFields: { name: string; key: string }[]
+  sensorFields: { name: string; key: string }[],
 ) => {
   const stats: Record<string, { min: number; max: number; avg: number }> = {};
 
@@ -23,7 +23,9 @@ export const computeGlobalStats = (
     stats[field.name] = {
       min: Math.min(...numericValues),
       max: Math.max(...numericValues),
-      avg: numericValues.reduce((sum, value) => sum + value, 0) / numericValues.length,
+      avg:
+        numericValues.reduce((sum, value) => sum + value, 0) /
+        numericValues.length,
     };
   });
 

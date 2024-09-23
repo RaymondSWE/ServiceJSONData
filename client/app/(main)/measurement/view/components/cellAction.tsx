@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { deleteMeasurement } from "@/services/measurement-service";
+import { handleError } from "@/lib/error-handler";
 
 interface CellActionProps {
   data: MeasurementColumn;
@@ -23,7 +24,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
     toast.success("ID copied to clipboard! 📋");
@@ -36,7 +37,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       window.location.reload(); // no idea why router.reload() doesn't work
       toast.success("Measurement deleted successfully. 🗑️");
     } catch (error) {
-      toast.error("Failed to delete measurement. Please try again." + error);
+      handleError(error);
     } finally {
       setLoading(false);
       setOpen(false);
@@ -64,9 +65,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             Copy ID
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/measurement/${data.id}`)
-            }
+            onClick={() => router.push(`/measurement/${data.id}`)}
           >
             <Edit2 className="mr-2 h-4 w-4" />
             Edit

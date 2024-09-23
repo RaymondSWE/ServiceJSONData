@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { Toaster } from "react-hot-toast";  
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
@@ -21,13 +21,15 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-[350px]' : 'ml-[150px]'}`}>
-        {children}
-      </main>
-    </div>
-    <Toaster />
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <main
+          className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-[350px]" : "ml-[150px]"}`}
+        >
+          {children}
+        </main>
+      </div>
+      <Toaster />
     </>
   );
 };

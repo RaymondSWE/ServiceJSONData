@@ -1,9 +1,5 @@
 "use client";
-import {
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
 interface TimelineEntry {
@@ -41,7 +37,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           Who am I?
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          My name is Raman Mohammed and hopefully this timeline will give you a better idea of who I am 😀
+          My name is Raman Mohammed and hopefully this timeline will give you a
+          better idea of who I am 😀
         </p>
       </div>
 

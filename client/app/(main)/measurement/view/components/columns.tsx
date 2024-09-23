@@ -50,13 +50,27 @@ export const columns: ColumnDef<MeasurementColumn>[] = [
     header: "Sensors",
     cell: ({ row }) => (
       <div className="grid grid-cols-3 gap-y-1">
-        <div><strong>A:</strong> {row.original.sensors.a}</div>
-        <div><strong>B:</strong> {row.original.sensors.b}</div>
-        <div><strong>C:</strong> {row.original.sensors.c}</div>
-        <div><strong>D:</strong> {row.original.sensors.d}</div>
-        <div><strong>E:</strong> {row.original.sensors.e}</div>
-        <div><strong>F:</strong> {row.original.sensors.f}</div>
-        <div><strong>G:</strong> {row.original.sensors.g}</div>
+        <div>
+          <strong>A:</strong> {row.original.sensors.a}
+        </div>
+        <div>
+          <strong>B:</strong> {row.original.sensors.b}
+        </div>
+        <div>
+          <strong>C:</strong> {row.original.sensors.c}
+        </div>
+        <div>
+          <strong>D:</strong> {row.original.sensors.d}
+        </div>
+        <div>
+          <strong>E:</strong> {row.original.sensors.e}
+        </div>
+        <div>
+          <strong>F:</strong> {row.original.sensors.f}
+        </div>
+        <div>
+          <strong>G:</strong> {row.original.sensors.g}
+        </div>
       </div>
     ),
   },

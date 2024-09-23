@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Button } from "./button";
 import { MenuIcon, CheckIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "./command";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./command";
 
 interface DeviceSelectorProps {
   availableDevices: { value: string; label: string }[];
@@ -10,7 +17,11 @@ interface DeviceSelectorProps {
   setSelectedDeviceSerial: (serial: string) => void;
 }
 
-export function DeviceSelector({ availableDevices, selectedDeviceSerial, setSelectedDeviceSerial }: DeviceSelectorProps) {
+export function DeviceSelector({
+  availableDevices,
+  selectedDeviceSerial,
+  setSelectedDeviceSerial,
+}: DeviceSelectorProps) {
   const [deviceComboboxOpen, setDeviceComboboxOpen] = useState(false);
 
   return (
@@ -22,13 +33,18 @@ export function DeviceSelector({ availableDevices, selectedDeviceSerial, setSele
           aria-expanded={deviceComboboxOpen}
           className="w-[200px] justify-between mt-4"
         >
-          {selectedDeviceSerial ? `Device ${selectedDeviceSerial}` : "Select a device serial"}
+          {selectedDeviceSerial
+            ? `Device ${selectedDeviceSerial}`
+            : "Select a device serial"}
           <MenuIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent>
         <Command>
-          <CommandInput placeholder="Search by device serial.." className="h-9" />
+          <CommandInput
+            placeholder="Search by device serial.."
+            className="h-9"
+          />
           <CommandList>
             <CommandEmpty>No device found.</CommandEmpty>
             <CommandGroup title="Devices">
