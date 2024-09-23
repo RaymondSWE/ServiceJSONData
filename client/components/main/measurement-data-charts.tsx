@@ -62,6 +62,8 @@ export function MeasurementDataCharts() {
     useState<string>("Temperature");
   const [selectedAvgField, setSelectedAvgField] =
     useState<string>("Temperature");
+    const BAR_COMPARISON_THRESHOLD = 150;
+
 
   const availableDevices =
     devicesData?.map((device: Device) => ({
@@ -121,14 +123,18 @@ export function MeasurementDataCharts() {
       return <span className="text-gray-500">• N/A</span>;
     }
 
-    if (deviceValue > globalStatsValue) {
+    const difference = Math.abs(deviceValue - globalStatsValue);
+
+    
+    if (difference <= BAR_COMPARISON_THRESHOLD) {
+      return  <span className="text-gray-500">• Close</span>;
+    } else if (deviceValue > globalStatsValue) {
       return <span className="text-green-500">↑ Above</span>;
-    }
-    if (deviceValue < globalStatsValue) {
+    } else {
       return <span className="text-red-500">↓ Below</span>;
     }
 
-    return <span className="text-gray-500">• Equal</span>;
+
   };
 
   // Get bar color based on comparison of device value average with global average
@@ -142,7 +148,7 @@ export function MeasurementDataCharts() {
 
     const difference = Math.abs(deviceValue - globalStatsValue);
 
-    if (difference <= 150) {
+    if (difference <= BAR_COMPARISON_THRESHOLD) {
       return "gray";
     } else if (deviceValue > globalStatsValue) {
       return "green";
@@ -260,7 +266,7 @@ export function MeasurementDataCharts() {
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-gray-500 mr-2"></span>
-                    Close to global average (±150)
+                    Close to global average (±{BAR_COMPARISON_THRESHOLD})
                   </li>
                 </ul>
               </CardDescription>
