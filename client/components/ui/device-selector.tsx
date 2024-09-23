@@ -34,7 +34,7 @@ export function DeviceSelector({
           className="w-[200px] justify-between mt-4"
         >
           {selectedDeviceSerial
-            ? `Device ${selectedDeviceSerial}`
+            ? `${selectedDeviceSerial}`
             : "Select a device serial"}
           <MenuIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>

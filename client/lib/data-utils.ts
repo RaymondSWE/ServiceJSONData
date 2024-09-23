@@ -1,6 +1,7 @@
 import { MeasurementData } from "@/types/types";
 
 // Utility to extract a value from nested object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getValueFromNestedObject = (object: any, keys: string[]): any => {
   return keys.reduce((acc, key) => acc[key], object);
 };
