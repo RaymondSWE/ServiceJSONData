@@ -19,7 +19,7 @@ interface StatCardProps {
   sensorFields: { name: string; key: string }[];
   selectedField: string;
   onSelectField: (field: string) => void;
-  selectedDeviceValue: number | undefined;
+  selectedMeasurementValue: number | undefined;
   globalStatLabel: string;
   globalStatValue: number | undefined;
   comparisonIndicator: JSX.Element;
@@ -30,7 +30,7 @@ export function StatCard({
   sensorFields,
   selectedField,
   onSelectField,
-  selectedDeviceValue,
+  selectedMeasurementValue,
   globalStatLabel,
   globalStatValue,
   comparisonIndicator,
@@ -83,7 +83,7 @@ export function StatCard({
         <div className="flex flex-col space-y-1 bg-gray-50 p-4 rounded-md shadow-sm">
           <div className="flex items-center justify-between">
             <p className="text-lg font-bold text-gray-800">
-              {selectedDeviceValue ?? "N/A"}
+              {selectedMeasurementValue ?? "N/A"}
             </p>
             <span className="flex items-center space-x-2">
               {comparisonIndicator}

@@ -19,7 +19,7 @@ import {
 } from "recharts";
 import { Separator } from "../ui/separator";
 import { computeGlobalStats } from "@/lib/data-utils";
-import { DeviceSelector } from "../ui/device-selector";
+import { MeasurementSelector } from "../ui/measurement-selector";
 import { StatCard } from "../ui/stat-card";
 import { MeasurementData } from "@/types/types";
 
@@ -34,34 +34,34 @@ type GlobalStats = {
 export function MeasurementDataCharts() {
   const { data: measurementData, loading } = useFetchAllMeasurements();
 
-  const [selectedDeviceSerial, setSelectedDeviceSerial] = useState<string | null>(null);
+  const [selectedMeasurementSerial, setSelectedMeasurementSerial] = useState<string | null>(null);
   const [selectedMinField, setSelectedMinField] = useState<string>("Temperature");
   const [selectedMaxField, setSelectedMaxField] = useState<string>("Temperature");
   const [selectedAvgField, setSelectedAvgField] = useState<string>("Temperature");
 
   const BAR_COMPARISON_THRESHOLD = 150;
 
-  const availableDevices = measurementData?.map((device: MeasurementData) => ({
-    value: device.serial,
-    label: `${device.serial}`,
+  const availableMeasurements  = measurementData?.map((measurement: MeasurementData) => ({
+    value: measurement.serial,
+    label: `${measurement.serial}`,
   })) || [];
 
-  const selectedDevice = measurementData?.find(
-    (device: MeasurementData) => device.serial === selectedDeviceSerial,
+  const selectedMeasurement = measurementData?.find(
+    (measurement: MeasurementData) => measurement.serial === selectedMeasurementSerial,
   );
 
-  const chartData = selectedDevice
+  const chartData = selectedMeasurement
     ? [
-        { name: "Temperature", value: selectedDevice.temperature },
-        { name: "Pressure", value: selectedDevice.pressure },
-        { name: "Length", value: selectedDevice.length },
-        { name: "Noise", value: selectedDevice.noise },
-        { name: "Sensor A", value: selectedDevice.rawSensorData.a },
-        { name: "Sensor B", value: selectedDevice.rawSensorData.b },
-        { name: "Sensor C", value: selectedDevice.rawSensorData.c },
-        { name: "Sensor D", value: selectedDevice.rawSensorData.d },
-        { name: "Sensor E", value: selectedDevice.rawSensorData.e },
-        { name: "Sensor F", value: selectedDevice.rawSensorData.f },
+        { name: "Temperature", value: selectedMeasurement.temperature },
+        { name: "Pressure", value: selectedMeasurement.pressure },
+        { name: "Length", value: selectedMeasurement.length },
+        { name: "Noise", value: selectedMeasurement.noise },
+        { name: "Sensor A", value: selectedMeasurement.rawSensorData.a },
+        { name: "Sensor B", value: selectedMeasurement.rawSensorData.b },
+        { name: "Sensor C", value: selectedMeasurement.rawSensorData.c },
+        { name: "Sensor D", value: selectedMeasurement.rawSensorData.d },
+        { name: "Sensor E", value: selectedMeasurement.rawSensorData.e },
+        { name: "Sensor F", value: selectedMeasurement.rawSensorData.f },
       ]
     : [];
 
@@ -83,11 +83,11 @@ export function MeasurementDataCharts() {
     return computeGlobalStats(measurementData, sensorFields);
   }, [measurementData]);
 
-  const getMeasurementForSelectedDevice  = (fieldKey: string): number | undefined => {
-    if (!selectedDevice) return undefined;
+  const getSelectedMeasurementValue  = (fieldKey: string): number | undefined => {
+    if (!selectedMeasurement) return undefined;
     const keys = fieldKey.split(".");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return keys.reduce((acc: any, key: string) => acc[key], selectedDevice);
+    return keys.reduce((acc: any, key: string) => acc[key], selectedMeasurement);
   };
 
   const getComparisonIndicator = (
@@ -134,35 +134,35 @@ export function MeasurementDataCharts() {
 
   return (
     <div className="mx-auto max-w-6xl p-6">
-      {selectedDevice ? (
+      {selectedMeasurement ? (
         <Heading
-          title={`Device Data Overview: ${selectedDevice.serial}`}
+          title={`Device Data Overview: ${selectedMeasurement.serial}`}
           description="Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices."
         />
       ) : (
         <Heading title="Select a Device" description="Select a device to view its data." />
       )}
-      <DeviceSelector
-        availableDevices={availableDevices}
-        selectedDeviceSerial={selectedDeviceSerial}
-        setSelectedDeviceSerial={setSelectedDeviceSerial}
+      <MeasurementSelector
+        availableMeasurements={availableMeasurements}
+        selectedMeasurementSerial={selectedMeasurementSerial}
+        setSelectedMeasurementSerial={setSelectedMeasurementSerial}
       />
 
       <Separator className="my-4 " />
 
-      {selectedDevice && globalStats && (
+      {selectedMeasurement && globalStats && (
         <div className="grid grid-cols-3 gap-4">
           <StatCard
             fieldLabel="Min Value"
             sensorFields={sensorFields}
             selectedField={selectedMinField}
             onSelectField={setSelectedMinField}
-            selectedDeviceValue={getMeasurementForSelectedDevice(
+            selectedMeasurementValue={getSelectedMeasurementValue(
               sensorFields.find((field) => field.name === selectedMinField)?.key || "",
             )}
             globalStatValue={globalStats[selectedMinField]?.min}
             comparisonIndicator={getComparisonIndicator(
-              getMeasurementForSelectedDevice(
+              getSelectedMeasurementValue(
                 sensorFields.find((field) => field.name === selectedMinField)?.key || "",
               ),
               globalStats[selectedMinField]?.min,
@@ -175,12 +175,12 @@ export function MeasurementDataCharts() {
             sensorFields={sensorFields}
             selectedField={selectedMaxField}
             onSelectField={setSelectedMaxField}
-            selectedDeviceValue={getMeasurementForSelectedDevice(
+            selectedMeasurementValue={getSelectedMeasurementValue(
               sensorFields.find((field) => field.name === selectedMaxField)?.key || "",
             )}
             globalStatValue={globalStats[selectedMaxField]?.max}
             comparisonIndicator={getComparisonIndicator(
-              getMeasurementForSelectedDevice(
+              getSelectedMeasurementValue(
                 sensorFields.find((field) => field.name === selectedMaxField)?.key || "",
               ),
               globalStats[selectedMaxField]?.max,
@@ -193,12 +193,12 @@ export function MeasurementDataCharts() {
             sensorFields={sensorFields}
             selectedField={selectedAvgField}
             onSelectField={setSelectedAvgField}
-            selectedDeviceValue={getMeasurementForSelectedDevice(
+            selectedMeasurementValue={getSelectedMeasurementValue(
               sensorFields.find((field) => field.name === selectedAvgField)?.key || "",
             )}
             globalStatValue={globalStats[selectedAvgField]?.avg}
             comparisonIndicator={getComparisonIndicator(
-              getMeasurementForSelectedDevice(
+              getSelectedMeasurementValue(
                 sensorFields.find((field) => field.name === selectedAvgField)?.key || "",
               ),
               globalStats[selectedAvgField]?.avg,
@@ -208,7 +208,7 @@ export function MeasurementDataCharts() {
         </div>
       )}
 
-      {selectedDevice && globalStats && (
+      {selectedMeasurement && globalStats && (
         <div className="mt-6">
           <Card>
             <CardHeader>
