@@ -1,4 +1,4 @@
-import { LayoutGrid, User as UserIcon, Ruler, LucideIcon } from "lucide-react";
+import { User as UserIcon, Ruler, LucideIcon } from "lucide-react";
 
 type Submenu = {
   href: string;
@@ -29,13 +29,6 @@ export function getMenuList(pathname: string): Group[] {
           label: "About Me",
           active: pathname.includes("/about"),
           icon: UserIcon,
-          submenus: [],
-        },
-        {
-          href: `/use-case`,
-          label: "Use-Case Assignment",
-          active: pathname.includes("/use-case"),
-          icon: LayoutGrid,
           submenus: [],
         },
         {

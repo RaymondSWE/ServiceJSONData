@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
-import { fetchAllMeasurements, fetchMeasurementById } from '../services/measurement-service';
-import { MeasurementData } from '../types/types';
-import { handleError } from '@/lib/error-handler';
+import { useEffect, useState } from "react";
+import {
+  fetchAllMeasurements,
+  fetchMeasurementById,
+} from "../services/measurement-service";
+import { MeasurementData } from "../types/types";
+import { handleError } from "@/lib/error-handler";
 
 // TODO:: add loader component to show loading state
 export function useFetchAllMeasurements() {
@@ -11,7 +14,7 @@ export function useFetchAllMeasurements() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const measurements = await fetchAllMeasurements(); 
+        const measurements = await fetchAllMeasurements();
         setData(measurements);
       } catch (error) {
         handleError(error);

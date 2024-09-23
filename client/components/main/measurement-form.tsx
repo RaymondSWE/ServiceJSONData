@@ -32,7 +32,7 @@ interface MeasurementFormProps {
 type MeasurementFormValues = z.infer<typeof formSchema>;
 
 export const MeasurementForm: React.FC<MeasurementFormProps> = ({
-    initialMeasurement,
+  initialMeasurement,
 }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,9 +43,11 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
     ? "Update your measurement data"
     : "Create a new measurement";
   const toastMessage = initialMeasurement
-    ? "Measurement updated"
-    : "Measurement created";
-  const action = initialMeasurement  ? "Update Measurement" : "Create Measurement";
+    ? "Measurement updated 🎉"
+    : "Measurement created 🎉";
+  const action = initialMeasurement
+    ? "Update Measurement"
+    : "Create Measurement";
 
   const form = useForm<MeasurementFormValues>({
     resolver: zodResolver(formSchema),
@@ -67,7 +69,6 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
     },
   });
 
-
   const onSubmit = async (data: MeasurementFormValues) => {
     try {
       setLoading(true);
@@ -78,13 +79,11 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
 
       if (initialMeasurement) {
         await axios.put(
-            `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
-            data,
+          `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
+          data,
         );
       } else {
-        await axios.post("http://localhost:8080/api/measurements", 
-          requestData,
-        );
+        await axios.post("http://localhost:8080/api/measurements", requestData);
       }
       router.push("/measurement/view");
       router.refresh();
@@ -95,15 +94,17 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       setLoading(false);
     }
   };
-  
+
   const onDelete = async () => {
     try {
       setLoading(true);
       if (initialMeasurement?.id) {
-        await axios.delete(`http://localhost:8080/api/measurements/${initialMeasurement.id}`);
+        await axios.delete(
+          `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
+        );
         router.push("/measurement/view");
         router.refresh();
-        toast.success("Measurement deleted successfully.");
+        toast.success("Measurement deleted successfully. 🗑️");
       }
     } catch (error) {
       handleError(error);
@@ -112,6 +113,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       setOpen(false);
     }
   };
+
   return (
     <>
       <AlertModal
@@ -123,7 +125,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       />
       <div className="flex justify-between items-center p-4">
         <Heading title={title} description={description} />
-        {initialMeasurement  && (
+        {initialMeasurement && (
           <Button
             disabled={loading}
             variant="destructive"
@@ -169,7 +171,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
                   <FormLabel>Temperature (°C)</FormLabel>
                   <FormControl>
                     <Input
-                      type="number" 
+                      type="number"
                       disabled={loading}
                       placeholder="Temperature"
                       {...field}

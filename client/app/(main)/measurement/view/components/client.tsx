@@ -9,23 +9,23 @@ import React from "react";
 import { MeasurementColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 
-interface MeasurementClientProps  {
+interface MeasurementClientProps {
   data: MeasurementColumn[];
 }
 
-export const MeasurementClient: React.FC<MeasurementClientProps> = ({ data }) => {
+export const MeasurementClient: React.FC<MeasurementClientProps> = ({
+  data,
+}) => {
   const router = useRouter();
 
   return (
     <>
       <div className="flex items-center justify-between mr-24">
         <Heading
-          title={`Measurements (${data.length})`}
+          title={`Device Measurements (${data.length})`}
           description="Manage your measurements for your devices."
         />
-        <Button
-          onClick={() => router.push("/measurement/add")}
-        >
+        <Button onClick={() => router.push("/measurement/add")}>
           <Plus className="mr-2 h-4 w-4" />
           Create Measurement
         </Button>

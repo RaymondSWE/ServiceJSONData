@@ -17,7 +17,7 @@ const Sidebar = () => {
     <aside
       className={cn(
         "fixed top-0 left-0 z-20 h-screen -translate-x-full lg:translate-x-0 transition-[width] ease-in-out duration-300 shadow-md dark:shadow-zinc-800",
-        isOpen === false ? "w-[90px]" : "w-72"
+        isOpen === false ? "w-[90px]" : "w-72",
       )}
     >
       <SidebarToggle
@@ -28,7 +28,7 @@ const Sidebar = () => {
         <Button
           className={cn(
             "transition-transform ease-in-out duration-300 mb-1",
-            isOpen === false ? "translate-x-1" : "translate-x-0"
+            isOpen === false ? "translate-x-1" : "translate-x-0",
           )}
           variant="link"
           asChild
@@ -37,11 +37,13 @@ const Sidebar = () => {
             <Image
               src="/img/raysafe.png"
               alt="Raysafe Logo"
-              width={isOpen ? 200 : 100} 
-              height={isOpen ? 200 : 100} 
+              width={isOpen ? 200 : 100}
+              height={isOpen ? 200 : 100}
               className={cn(
                 "transition-[transform,opacity,display] ease-in-out duration-300",
-                isOpen === false ? "translate-x-0 opacity-100" : "translate-x-0 opacity-100"
+                isOpen === false
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-0 opacity-100",
               )}
             />
           </div>

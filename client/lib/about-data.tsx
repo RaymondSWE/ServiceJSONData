@@ -6,9 +6,12 @@ export const timelineData = [
     content: (
       <div className="flex flex-col md:flex-row items-start justify-between gap-6">
         <div className="w-full md:w-2/3 space-y-4 mr-4">
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Born in Gothenburg</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Born in Gothenburg
+          </h3>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            Born in Östra Sjukhus, Gothenburg in 1999, and I have lived here ever since.
+            Born in Östra Sjukhus, Gothenburg in 1999, and I have lived here
+            ever since.
           </p>
         </div>
         <div className="w-full md:w-1/3 flex gap-8 justify-center">
@@ -35,9 +38,13 @@ export const timelineData = [
     content: (
       <div className="flex flex-col md:flex-row items-start justify-between gap-6">
         <div className="w-full md:w-2/3 space-y-4">
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Friendship & Family</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Friendship & Family
+          </h3>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            I have a brother, whom you can see in the image on the right. On the left is a childhood friend, with whom I’ve been friends since kindergarten.
+            I have a brother, whom you can see in the image on the right. On the
+            left is a childhood friend, with whom I’ve been friends since
+            kindergarten.
           </p>
         </div>
         <div className="w-full md:w-1/3 flex gap-8 justify-center">
@@ -64,9 +71,12 @@ export const timelineData = [
     content: (
       <div className="flex flex-col md:flex-row items-start justify-between gap-6">
         <div className="w-full md:w-2/3 space-y-4">
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">High School Graduation</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+            High School Graduation
+          </h3>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            I graduated from high school in 2019. I studied the Natural Science program at Gymnasieakademin, then started working at Mathem.
+            I graduated from high school in 2019. I studied the Natural Science
+            program at Gymnasieakademin, then started working at Mathem.
           </p>
         </div>
         <div className="w-full md:w-1/3 flex gap-8 justify-center">
@@ -93,9 +103,12 @@ export const timelineData = [
     content: (
       <div className="flex flex-col md:flex-row items-start justify-between gap-6">
         <div className="w-full md:w-2/3 space-y-4">
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">University of Skövde</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+            University of Skövde
+          </h3>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            In 2021, I started studying at the University of Skövde and completed my Bachelor of Science in Computer Science.
+            In 2021, I started studying at the University of Skövde and
+            completed my Bachelor of Science in Computer Science.
           </p>
         </div>
         <div className="w-full md:w-1/3 flex gap-8 justify-center">
@@ -122,9 +135,12 @@ export const timelineData = [
     content: (
       <div className="flex flex-col md:flex-row items-start justify-between gap-6">
         <div className="w-full md:w-2/3 space-y-4">
-          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">Present Day</h3>
+          <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
+            Present Day
+          </h3>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            Today, I continue learning and improving. I am actively studying and constantly looking for opportunities to grow.
+            Today, I continue learning and improving. I am actively studying and
+            constantly looking for opportunities to grow.
           </p>
         </div>
         <div className="w-full md:w-1/3 flex gap-8 justify-center">
