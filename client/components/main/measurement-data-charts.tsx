@@ -266,7 +266,7 @@ export function MeasurementDataCharts() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <BarChart width={800} height={400} data={chartData}>
+              <BarChart width={1000} height={300} data={chartData}>
                 <CartesianGrid strokeDasharray="9 9" />
                 <XAxis dataKey="name" />
                 <YAxis />
