@@ -117,7 +117,7 @@ export function SidebarMenu({ isOpen }: MenuProps) {
               <TooltipProvider disableHoverableContent>
                 <Tooltip delayDuration={100}>
                   <SignedIn>
-                    <div className="w-full flex justify-start items-center ml-6">
+                    <div className="w-full flex justify-start items-center ml-4">
                       <UserButton />
                       {isOpen && (
                         <p className="ml-4 font-medium truncate max-w-[150px]">
@@ -141,7 +141,6 @@ export function SidebarMenu({ isOpen }: MenuProps) {
               </TooltipProvider>
             </li>
           )}
-          
         </ul>
       </nav>
     </ScrollArea>

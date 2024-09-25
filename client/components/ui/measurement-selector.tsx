@@ -25,7 +25,10 @@ export function MeasurementSelector({
   const [measurementComboboxOpen, setMeasurementComboboxOpen] = useState(false);
 
   return (
-    <Popover open={measurementComboboxOpen} onOpenChange={setMeasurementComboboxOpen}>
+    <Popover
+      open={measurementComboboxOpen}
+      onOpenChange={setMeasurementComboboxOpen}
+    >
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -41,10 +44,7 @@ export function MeasurementSelector({
       </PopoverTrigger>
       <PopoverContent>
         <Command>
-          <CommandInput
-            placeholder="Search by serial.."
-            className="h-9"
-          />
+          <CommandInput placeholder="Search by serial.." className="h-9" />
           <CommandList>
             <CommandEmpty>No measurement found.</CommandEmpty>
             <CommandGroup title="Measurements">

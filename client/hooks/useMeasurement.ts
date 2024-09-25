@@ -6,7 +6,6 @@ import {
 import { MeasurementData } from "../types/types";
 import { handleError } from "@/lib/error-handler";
 
-// TODO:: add loader component to show loading state
 export function useFetchAllMeasurements() {
   const [data, setData] = useState<MeasurementData[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
