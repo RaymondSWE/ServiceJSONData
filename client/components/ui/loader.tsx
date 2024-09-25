@@ -1,5 +1,5 @@
-import React from 'react';
-import { DNA } from 'react-loader-spinner';
+import React from "react";
+import { DNA } from "react-loader-spinner";
 
 const Loader: React.FC = () => {
   return (
@@ -12,7 +12,6 @@ const Loader: React.FC = () => {
         wrapperStyle={{}}
         wrapperClass="dna-wrapper"
       />
-      
     </div>
   );
 };

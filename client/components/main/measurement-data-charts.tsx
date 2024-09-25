@@ -18,7 +18,7 @@ import {
   Cell,
 } from "recharts";
 import { Separator } from "../ui/separator";
-import { computeGlobalStats } from "@/lib/data-utils";
+import { computeGlobalStats } from "@/lib/measurement-data-utils";
 import { MeasurementSelector } from "../ui/measurement-selector";
 import { StatCard } from "../ui/stat-card";
 import { MeasurementData } from "@/types/types";
@@ -35,18 +35,25 @@ type GlobalStats = {
 export function MeasurementDataCharts() {
   const { data: measurementData, loading } = useFetchAllMeasurements();
 
-  const [selectedMeasurementSerial, setSelectedMeasurementSerial] = useState<string | null>(null);
-  const [selectedMinField, setSelectedMinField] = useState<string>("Temperature");
-  const [selectedMaxField, setSelectedMaxField] = useState<string>("Temperature");
-  const [selectedAvgField, setSelectedAvgField] = useState<string>("Temperature");
+  const [selectedMeasurementSerial, setSelectedMeasurementSerial] = useState<
+    string | null
+  >(null);
+  const [selectedMinField, setSelectedMinField] =
+    useState<string>("Temperature");
+  const [selectedMaxField, setSelectedMaxField] =
+    useState<string>("Temperature");
+  const [selectedAvgField, setSelectedAvgField] =
+    useState<string>("Temperature");
 
-  const availableMeasurements  = measurementData?.map((measurement: MeasurementData) => ({
-    value: measurement.serial,
-    label: `${measurement.serial}`,
-  })) || [];
+  const availableMeasurements =
+    measurementData?.map((measurement: MeasurementData) => ({
+      value: measurement.serial,
+      label: `${measurement.serial}`,
+    })) || [];
 
   const selectedMeasurement = measurementData?.find(
-    (measurement: MeasurementData) => measurement.serial === selectedMeasurementSerial,
+    (measurement: MeasurementData) =>
+      measurement.serial === selectedMeasurementSerial,
   );
 
   const chartData = selectedMeasurement
@@ -76,33 +83,36 @@ export function MeasurementDataCharts() {
     { name: "Sensor E", key: "rawSensorData.e" },
     { name: "Sensor F", key: "rawSensorData.f" },
   ];
-
+  // Reasoning why its Sensor A instead of rawSensorData.a, is because of chartData object, whenever i tried get the field name it always showed Sensor A, B instead of rawSensorData.a, b
   const fieldThresholds: { [key: string]: number } = {
-    Temperature: 150,
-    Pressure: 150,
-    Length: 150,
-    Noise: 150,
-    "Sensor A": 150,
-    "Sensor B": 150,
-    "Sensor C": 150,
-    "Sensor D": 150,
-    "Sensor E": 150,
-    "Sensor F": 150,
+    Temperature: Number(process.env.NEXT_PUBLIC_THRESHOLD_TEMPERATURE),
+    Pressure: Number(process.env.NEXT_PUBLIC_THRESHOLD_PRESSURE),
+    Length: Number(process.env.NEXT_PUBLIC_THRESHOLD_LENGTH),
+    Noise: Number(process.env.NEXT_PUBLIC_THRESHOLD_NOISE),
+    "Sensor A": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_A),
+    "Sensor B": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_B),
+    "Sensor C": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_C),
+    "Sensor D": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_D),
+    "Sensor E": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_E),
+    "Sensor F": Number(process.env.NEXT_PUBLIC_THRESHOLD_SENSOR_F),
   };
-
   
-
   const globalStats = useMemo<GlobalStats | null>(() => {
     if (!measurementData) return null;
     return computeGlobalStats(measurementData, sensorFields);
   }, [measurementData]);
 
-  const getSelectedMeasurementValue  = (fieldKey: string): number | undefined => {
+  const getSelectedMeasurementValue = (
+    fieldKey: string,
+  ): number | undefined => {
     if (!selectedMeasurement) return undefined;
 
     const keys = fieldKey.split(".");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return keys.reduce((acc: any, key: string) => acc?.[key], selectedMeasurement);
+    return keys.reduce(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (acc: any, key: string) => acc?.[key],
+      selectedMeasurement,
+    );
   };
 
   const getComparisonIndicator = (
@@ -111,12 +121,12 @@ export function MeasurementDataCharts() {
     fieldName: string,
   ): JSX.Element => {
     if (measurementValue === undefined || globalStatsValue === undefined) {
-      return <span className="text-gray-500">• N/A</span>;  
+      return <span className="text-gray-500">• N/A</span>;
     }
-  
+
     const difference = Math.abs(measurementValue - globalStatsValue);
     const MAX_DIFFERENCE_THRESHOLD = fieldThresholds[fieldName];
-  
+
     if (difference <= MAX_DIFFERENCE_THRESHOLD) {
       return <span className="text-green-500">Good Device</span>;
     } else if (difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
@@ -125,28 +135,28 @@ export function MeasurementDataCharts() {
       return <span className="text-red-500">Anomaly Detected</span>;
     }
   };
-  
+
   const getBarColorBasedOnComparison = (
     measurementValue: number | undefined,
     globalStatsValue: number | undefined,
-    fieldName: string
+    fieldName: string,
   ): string => {
     if (globalStatsValue === undefined || measurementValue === undefined) {
-      return "gray";  
+      return "gray";
     }
-  
+
     const difference = Math.abs(measurementValue - globalStatsValue);
     const MAX_DIFFERENCE_THRESHOLD = fieldThresholds[fieldName];
-  
+
     if (difference <= MAX_DIFFERENCE_THRESHOLD) {
-      return "green"; 
+      return "green";
     } else if (difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
-      return "yellow"; 
+      return "yellow";
     } else {
-      return "red";   
+      return "red";
     }
   };
-  
+
   if (loading) {
     return <Loader />;
   }
@@ -159,7 +169,10 @@ export function MeasurementDataCharts() {
           description="Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices."
         />
       ) : (
-        <Heading title="Select a Device" description="Select a device to view its data." />
+        <Heading
+          title="Select a Device"
+          description="Select a device to view its data."
+        />
       )}
       <MeasurementSelector
         availableMeasurements={availableMeasurements}
@@ -177,12 +190,14 @@ export function MeasurementDataCharts() {
             selectedField={selectedMinField}
             onSelectField={setSelectedMinField}
             selectedMeasurementValue={getSelectedMeasurementValue(
-              sensorFields.find((field) => field.name === selectedMinField)?.key || "",
+              sensorFields.find((field) => field.name === selectedMinField)
+                ?.key || "",
             )}
             globalStatValue={globalStats[selectedMinField]?.min}
             comparisonIndicator={getComparisonIndicator(
               getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedMinField)?.key || "",
+                sensorFields.find((field) => field.name === selectedMinField)
+                  ?.key || "",
               ),
               globalStats[selectedMinField]?.min,
               selectedMinField,
@@ -196,12 +211,14 @@ export function MeasurementDataCharts() {
             selectedField={selectedMaxField}
             onSelectField={setSelectedMaxField}
             selectedMeasurementValue={getSelectedMeasurementValue(
-              sensorFields.find((field) => field.name === selectedMaxField)?.key || "",
+              sensorFields.find((field) => field.name === selectedMaxField)
+                ?.key || "",
             )}
             globalStatValue={globalStats[selectedMaxField]?.max}
             comparisonIndicator={getComparisonIndicator(
               getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedMaxField)?.key || "",
+                sensorFields.find((field) => field.name === selectedMaxField)
+                  ?.key || "",
               ),
               globalStats[selectedMaxField]?.max,
               selectedMaxField,
@@ -215,12 +232,14 @@ export function MeasurementDataCharts() {
             selectedField={selectedAvgField}
             onSelectField={setSelectedAvgField}
             selectedMeasurementValue={getSelectedMeasurementValue(
-              sensorFields.find((field) => field.name === selectedAvgField)?.key || "",
+              sensorFields.find((field) => field.name === selectedAvgField)
+                ?.key || "",
             )}
             globalStatValue={globalStats[selectedAvgField]?.avg}
             comparisonIndicator={getComparisonIndicator(
               getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedAvgField)?.key || "",
+                sensorFields.find((field) => field.name === selectedAvgField)
+                  ?.key || "",
               ),
               globalStats[selectedAvgField]?.avg,
               selectedAvgField,
@@ -236,19 +255,20 @@ export function MeasurementDataCharts() {
             <CardHeader>
               <CardTitle>Sensor Metrics Comparison</CardTitle>
               <CardDescription>
-                The bars are colored based on their comparison to the global average
+                The bars are colored based on their comparison to the global
+                average
                 <ul className="list-none space-y-1 my-2">
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                    Close to global average (Good device)
+                    Close to global average (Good device)  
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-yellow-500 mr-2"></span>
-                    Slight deviation from global average (Possible issues)
+                    Slight difference from global average (Possible issues)
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-red-500 mr-2"></span>
-                    Large deviation from global average (Anomaly detected))
+                    Large difference from global average (Possible anomaly)
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-gray-500 mr-2"></span>

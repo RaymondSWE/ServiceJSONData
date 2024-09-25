@@ -2,7 +2,7 @@ import axios from "axios";
 import { MeasurementData } from "../types/types";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  process.env.NEXT_PUBLIC_API_BASE_URL + "/measurements" ||
   "http://localhost:8080/api/measurements";
 
 export async function fetchAllMeasurements(): Promise<MeasurementData[]> {

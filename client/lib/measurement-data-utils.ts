@@ -6,7 +6,7 @@ export const getValueFromNestedObject = (object: any, keys: string[]): any => {
   return keys.reduce((acc, key) => acc[key], object);
 };
 
-// Compute stats for fields (min, max, avg)
+// Compute stats for fields of measurements (min, max, avg)
 export const computeGlobalStats = (
   devicesData: MeasurementData[],
   sensorFields: { name: string; key: string }[],
