@@ -39,8 +39,7 @@ export function MeasurementDataCharts() {
   const [selectedMinField, setSelectedMinField] = useState<string>("Temperature");
   const [selectedMaxField, setSelectedMaxField] = useState<string>("Temperature");
   const [selectedAvgField, setSelectedAvgField] = useState<string>("Temperature");
-
-  const BAR_COMPARISON_THRESHOLD = 150;
+  const MAX_DIFFERENCE_THRESHOLD = 150; // for demonstration purpose i will use this otherwise i could create a object with the thresholds for each field
 
   const availableMeasurements  = measurementData?.map((measurement: MeasurementData) => ({
     value: measurement.serial,
@@ -79,6 +78,8 @@ export function MeasurementDataCharts() {
     { name: "Sensor F", key: "rawSensorData.f" },
   ];
 
+  
+
   const globalStats = useMemo<GlobalStats | null>(() => {
     if (!measurementData) return null;
     return computeGlobalStats(measurementData, sensorFields);
@@ -101,12 +102,12 @@ export function MeasurementDataCharts() {
   
     const difference = Math.abs(measurementValue - globalStatsValue);
   
-    if (difference <= BAR_COMPARISON_THRESHOLD) {
-      return <span className="text-green-500">• Good Device</span>;
-    } else if (difference <= 2 * BAR_COMPARISON_THRESHOLD) {
-      return <span className="text-yellow-500">• Slight Deviation</span>;
+    if (difference <= MAX_DIFFERENCE_THRESHOLD) {
+      return <span className="text-green-500">Good Device</span>;
+    } else if (difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
+      return <span className="text-yellow-500">Slight Deviation</span>;
     } else {
-      return <span className="text-red-500">• Anomaly Detected</span>;
+      return <span className="text-red-500">Anomaly Detected</span>;
     }
   };
   
@@ -120,9 +121,9 @@ export function MeasurementDataCharts() {
   
     const difference = Math.abs(measurementValue - globalStatsValue);
   
-    if (difference <= BAR_COMPARISON_THRESHOLD) {
+    if (difference <= MAX_DIFFERENCE_THRESHOLD) {
       return "green";  // close to global average
-    } else if (difference > BAR_COMPARISON_THRESHOLD && difference <= 2 * BAR_COMPARISON_THRESHOLD) {
+    } else if (difference > MAX_DIFFERENCE_THRESHOLD && difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
       return "yellow"; //  within acceptable limits
     } else {
       return "red";   // Far above or below,
@@ -215,19 +216,19 @@ export function MeasurementDataCharts() {
             <CardHeader>
               <CardTitle>Sensor Metrics Comparison</CardTitle>
               <CardDescription>
-                The bars are colored based on their comparison to the global average:
+                The bars are colored based on their comparison to the global average
                 <ul className="list-none space-y-1 my-2">
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                    Close to global average (±{BAR_COMPARISON_THRESHOLD}, Good device)
+                    Close to global average (Good device)
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-yellow-500 mr-2"></span>
-                    Slight deviation from global average (±{BAR_COMPARISON_THRESHOLD * 2})
+                    Slight deviation from global average (Possible issues)
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-red-500 mr-2"></span>
-                    Large deviation from global average (More than ±{BAR_COMPARISON_THRESHOLD * 2}, Anomaly detected)
+                    Large deviation from global average (Anomaly detected))
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-gray-500 mr-2"></span>
