@@ -1,4 +1,4 @@
-import { User as UserIcon, Ruler, LucideIcon } from "lucide-react";
+import { Ruler, LucideIcon } from "lucide-react";
 
 type Submenu = {
   href: string;
@@ -22,15 +22,8 @@ type Group = {
 export function getMenuList(pathname: string): Group[] {
   return [
     {
-      groupLabel: "Main",
+      groupLabel: "Device",
       menus: [
-        {
-          href: `/about`,
-          label: "About Me",
-          active: pathname.includes("/about"),
-          icon: UserIcon,
-          submenus: [],
-        },
         {
           href: `/measurement`,
           label: "Measurement Data",

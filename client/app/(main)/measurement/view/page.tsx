@@ -5,11 +5,12 @@ import { MeasurementClient } from "./components/client";
 import { MeasurementColumn } from "./components/columns";
 import { format } from "date-fns";
 import { useFetchAllMeasurements } from "@/hooks/useMeasurement";
+import Loader from "@/components/ui/loader";
 
 const MeasurementPage = () => {
   const { data, loading } = useFetchAllMeasurements();
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
 
   const formattedMeasurements: MeasurementColumn[] = (data || []).map(
     (measurement) => {

@@ -4,13 +4,14 @@ import { useFetchMeasurementById } from "@/hooks/useMeasurement";
 import { MeasurementForm } from "@/components/main/measurement-form";
 import React from "react";
 import { useParams } from "next/navigation";
+import Loader from "@/components/ui/loader";
 
 const MeasurementIdPage = () => {
   const { measurementId } = useParams();
   const id = Number(measurementId);
   const { data, loading } = useFetchMeasurementById(id);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="flex-col">

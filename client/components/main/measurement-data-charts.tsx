@@ -22,6 +22,7 @@ import { computeGlobalStats } from "@/lib/data-utils";
 import { MeasurementSelector } from "../ui/measurement-selector";
 import { StatCard } from "../ui/stat-card";
 import { MeasurementData } from "@/types/types";
+import Loader from "../ui/loader";
 
 type GlobalStats = {
   [key: string]: {
@@ -90,47 +91,46 @@ export function MeasurementDataCharts() {
     return keys.reduce((acc: any, key: string) => acc[key], selectedMeasurement);
   };
 
-  //TODO:: GetComparisionIndicator and getBarColorBasedOnComparison are similar, can be refactored
   const getComparisonIndicator = (
     measurementValue: number | undefined,
-    globalStatsValue: number | undefined,
+    globalStatsValue: number | undefined
   ): JSX.Element => {
     if (measurementValue === undefined || globalStatsValue === undefined) {
-      return <span className="text-gray-500">• N/A</span>;
+      return <span className="text-gray-500">• N/A</span>;  
     }
-
+  
     const difference = Math.abs(measurementValue - globalStatsValue);
-
+  
     if (difference <= BAR_COMPARISON_THRESHOLD) {
-      return <span className="text-gray-500">• Close</span>;
-    } else if (measurementValue > globalStatsValue) {
-      return <span className="text-green-500">↑ Above</span>;
+      return <span className="text-green-500">• Good Device</span>;
+    } else if (difference <= 2 * BAR_COMPARISON_THRESHOLD) {
+      return <span className="text-yellow-500">• Slight Deviation</span>;
     } else {
-      return <span className="text-red-500">↓ Below</span>;
+      return <span className="text-red-500">• Anomaly Detected</span>;
     }
   };
-
+  
   const getBarColorBasedOnComparison = (
     measurementValue: number | undefined,
-    globalStatsValue: number | undefined,
+    globalStatsValue: number | undefined
   ): string => {
     if (globalStatsValue === undefined || measurementValue === undefined) {
-      return "gray";
+      return "gray";  
     }
-
+  
     const difference = Math.abs(measurementValue - globalStatsValue);
-
+  
     if (difference <= BAR_COMPARISON_THRESHOLD) {
-      return "gray";
-    } else if (measurementValue > globalStatsValue) {
-      return "green";
+      return "green";  // close to global average
+    } else if (difference > BAR_COMPARISON_THRESHOLD && difference <= 2 * BAR_COMPARISON_THRESHOLD) {
+      return "yellow"; //  within acceptable limits
     } else {
-      return "red";
+      return "red";   // Far above or below,
     }
   };
-  //TODO: Implement the following: Loading Spinner Component
+  
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   return (
@@ -215,19 +215,23 @@ export function MeasurementDataCharts() {
             <CardHeader>
               <CardTitle>Sensor Metrics Comparison</CardTitle>
               <CardDescription>
-                The bars are colored based on their comparison to the global average
+                The bars are colored based on their comparison to the global average:
                 <ul className="list-none space-y-1 my-2">
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                    Above global average
+                    Close to global average (±{BAR_COMPARISON_THRESHOLD}, Good device)
+                  </li>
+                  <li className="flex items-center">
+                    <span className="inline-block h-2 w-2 rounded-full bg-yellow-500 mr-2"></span>
+                    Slight deviation from global average (±{BAR_COMPARISON_THRESHOLD * 2})
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-red-500 mr-2"></span>
-                    Below global average
+                    Large deviation from global average (More than ±{BAR_COMPARISON_THRESHOLD * 2}, Anomaly detected)
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-gray-500 mr-2"></span>
-                    Close to global average (±{BAR_COMPARISON_THRESHOLD})
+                    No global average available
                   </li>
                 </ul>
               </CardDescription>
@@ -240,7 +244,8 @@ export function MeasurementDataCharts() {
                 <Tooltip />
                 <Bar dataKey="value">
                   {chartData.map((entry, index) => {
-                    const globalAvg = globalStats[selectedAvgField]?.avg;
+                    const globalAvg = globalStats?.[entry.name]?.avg;
+                    console.log(globalAvg);
                     const measurementValue = entry.value;
 
                     const fillColor = getBarColorBasedOnComparison(
