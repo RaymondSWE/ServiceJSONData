@@ -39,7 +39,6 @@ export function MeasurementDataCharts() {
   const [selectedMinField, setSelectedMinField] = useState<string>("Temperature");
   const [selectedMaxField, setSelectedMaxField] = useState<string>("Temperature");
   const [selectedAvgField, setSelectedAvgField] = useState<string>("Temperature");
-  const MAX_DIFFERENCE_THRESHOLD = 150; // for demonstration purpose i will use this otherwise i could create a object with the thresholds for each field
 
   const availableMeasurements  = measurementData?.map((measurement: MeasurementData) => ({
     value: measurement.serial,
@@ -78,6 +77,19 @@ export function MeasurementDataCharts() {
     { name: "Sensor F", key: "rawSensorData.f" },
   ];
 
+  const fieldThresholds: { [key: string]: number } = {
+    Temperature: 150,
+    Pressure: 150,
+    Length: 150,
+    Noise: 150,
+    "Sensor A": 150,
+    "Sensor B": 150,
+    "Sensor C": 150,
+    "Sensor D": 150,
+    "Sensor E": 150,
+    "Sensor F": 150,
+  };
+
   
 
   const globalStats = useMemo<GlobalStats | null>(() => {
@@ -87,20 +99,23 @@ export function MeasurementDataCharts() {
 
   const getSelectedMeasurementValue  = (fieldKey: string): number | undefined => {
     if (!selectedMeasurement) return undefined;
+
     const keys = fieldKey.split(".");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return keys.reduce((acc: any, key: string) => acc[key], selectedMeasurement);
+    return keys.reduce((acc: any, key: string) => acc?.[key], selectedMeasurement);
   };
 
   const getComparisonIndicator = (
     measurementValue: number | undefined,
-    globalStatsValue: number | undefined
+    globalStatsValue: number | undefined,
+    fieldName: string,
   ): JSX.Element => {
     if (measurementValue === undefined || globalStatsValue === undefined) {
       return <span className="text-gray-500">• N/A</span>;  
     }
   
     const difference = Math.abs(measurementValue - globalStatsValue);
+    const MAX_DIFFERENCE_THRESHOLD = fieldThresholds[fieldName];
   
     if (difference <= MAX_DIFFERENCE_THRESHOLD) {
       return <span className="text-green-500">Good Device</span>;
@@ -113,20 +128,22 @@ export function MeasurementDataCharts() {
   
   const getBarColorBasedOnComparison = (
     measurementValue: number | undefined,
-    globalStatsValue: number | undefined
+    globalStatsValue: number | undefined,
+    fieldName: string
   ): string => {
     if (globalStatsValue === undefined || measurementValue === undefined) {
       return "gray";  
     }
   
     const difference = Math.abs(measurementValue - globalStatsValue);
+    const MAX_DIFFERENCE_THRESHOLD = fieldThresholds[fieldName];
   
     if (difference <= MAX_DIFFERENCE_THRESHOLD) {
-      return "green";  // close to global average
-    } else if (difference > MAX_DIFFERENCE_THRESHOLD && difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
-      return "yellow"; //  within acceptable limits
+      return "green"; 
+    } else if (difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
+      return "yellow"; 
     } else {
-      return "red";   // Far above or below,
+      return "red";   
     }
   };
   
@@ -168,6 +185,7 @@ export function MeasurementDataCharts() {
                 sensorFields.find((field) => field.name === selectedMinField)?.key || "",
               ),
               globalStats[selectedMinField]?.min,
+              selectedMinField,
             )}
             globalStatLabel="Overall Min"
           />
@@ -186,6 +204,7 @@ export function MeasurementDataCharts() {
                 sensorFields.find((field) => field.name === selectedMaxField)?.key || "",
               ),
               globalStats[selectedMaxField]?.max,
+              selectedMaxField,
             )}
             globalStatLabel="Overall Max"
           />
@@ -204,6 +223,7 @@ export function MeasurementDataCharts() {
                 sensorFields.find((field) => field.name === selectedAvgField)?.key || "",
               ),
               globalStats[selectedAvgField]?.avg,
+              selectedAvgField,
             )}
             globalStatLabel="Overall Avg"
           />
@@ -252,6 +272,7 @@ export function MeasurementDataCharts() {
                     const fillColor = getBarColorBasedOnComparison(
                       measurementValue,
                       globalAvg,
+                      entry.name,
                     );
                     return <Cell key={`cell-${index}`} fill={fillColor} />;
                   })}
