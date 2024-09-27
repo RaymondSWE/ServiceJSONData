@@ -1,0 +1,44 @@
+{
+    "homePage": {
+      "welcomeMessage": "Welcome to the home page!"
+    },
+
+    "sidebarMenu": {
+    "groupLabel": "Device",
+    "measurement": {
+      "label": "Measurement Data",
+      "dashboard": "Dashboard",
+      "view": "View Data",
+      "add": "Add Data"
+    }
+  },
+  "measurementData": {
+    "deviceDataOverviewTitle": "Device Data Overview: {serial}",
+    "deviceDataOverviewDescription": "Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices.",
+    "selectDeviceTitle": "Select a Device",
+    "selectDeviceDescription": "Select a device to view its data.",
+    "sensorMetricsComparisonTitle": "Sensor Metrics Comparison",
+    "sensorMetricsComparisonDescription": "The bars are colored based on their comparison to the global average.",
+    "goodDevice": "Good Device",
+    "slightDeviation": "Slight Deviation",
+    "anomalyDetected": "Anomaly Detected",
+    "noDataAvailable": "N/A",
+    "barchart": {
+      "goodDevice": "Close to global average (Good device)",
+      "slightDeviation": "Slight difference from global average (Possible issues)",
+      "anomalyDetected": "Large difference from global average (Possible anomaly)",
+      "noData": "No global average available"
+    }
+  },
+  "statCard": {
+    "minValueLabel": "Min Value",
+    "maxValueLabel": "Max Value",
+    "avgValueLabel": "Avg Value",
+    "overallMinLabel": "Overall Min",
+    "overallMaxLabel": "Overall Max",
+    "overallAvgLabel": "Overall Avg",
+    "selectASensorField": "Select a sensor field..."
+  }
+
+}
+  

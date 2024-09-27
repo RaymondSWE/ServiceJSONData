@@ -1,0 +1,41 @@
+{
+    "homePage": {
+      "welcomeMessage": "Välkommen till hemsidan!"
+    },
+      "sidebarMenu": {
+        "groupLabel": "Enhet",
+        "measurement": {
+          "label": "Mätdata",
+          "dashboard": "Instrumentpanel",
+          "view": "Visa data",
+          "add": "Lägg till data"
+        }
+      },
+      "measurementData": {
+        "deviceDataOverviewTitle": "Översikt över enhetsdata: {serial}",
+        "deviceDataOverviewDescription": "Utforska detaljerade mätvärden och visualiseringar och jämför dem med andra enheter för att identifiera potentiella avvikelser eller defekta enheter.",
+        "selectDeviceTitle": "Välj en enhet",
+        "selectDeviceDescription": "Välj en enhet för att visa dess data.",
+        "sensorMetricsComparisonTitle": "Jämförelse av sensormetrik",
+        "sensorMetricsComparisonDescription": "Staplarna är färgade baserat på deras jämförelse med det globala genomsnittet.",
+        "goodDevice": "Bra enhet",
+        "slightDeviation": "Liten avvikelse",
+        "anomalyDetected": "Avvikelse upptäckt",
+        "noDataAvailable": "N/A",
+        "barchart": {
+          "goodDevice": "Nära globalt genomsnitt (Bra enhet)",
+          "slightDeviation": "Liten skillnad från globalt genomsnitt (Möjliga problem)",
+          "anomalyDetected": "Stor skillnad från globalt genomsnitt (Möjlig avvikelse)",
+          "noData": "Ingen globalt genomsnitt tillgängligt"
+        }, "statCard": {
+        "minValueLabel": "Minvärde",
+        "maxValueLabel": "Maxvärde",
+        "avgValueLabel": "Medelvärde",
+        "overallMinLabel": "Totalt min",
+        "overallMaxLabel": "Totalt max",
+        "overallAvgLabel": "Totalt medel",
+        "selectASensorField": "Välj ett sensorfält..."
+    }
+  }
+}
+  

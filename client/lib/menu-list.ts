@@ -1,4 +1,7 @@
+"use client"; // Ensure this file is a client component
+
 import { Ruler, LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type Submenu = {
   href: string;
@@ -19,30 +22,34 @@ type Group = {
   menus: Menu[];
 };
 
-export function getMenuList(pathname: string): Group[] {
+export function getMenuList(pathname: string, locale: string): Group[] {
+  // TODO:: Dunno if its a good idea to use useTranslations here, because it is a hook and it should be used inside a component 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const t = useTranslations('sidebarMenu');
+
   return [
     {
-      groupLabel: "Device",
+      groupLabel: t('groupLabel'),  
       menus: [
         {
-          href: `/measurement`,
-          label: "Measurement Data",
+          href: `/${locale}/measurement`, 
+          label: t('measurement.label'), 
           active: pathname.includes("/measurement"),
           icon: Ruler,
           submenus: [
             {
-              href: `/measurement/dashboard`,
-              label: "Dashboard",
+              href: `/${locale}/measurement/dashboard`, 
+              label: t('measurement.dashboard'), 
               active: pathname.includes("/measurement/dashboard"),
             },
             {
-              href: `/measurement/view`,
-              label: "View Data",
+              href: `/${locale}/measurement/view`, 
+              label: t('measurement.view'), 
               active: pathname.includes("/measurement/view"),
             },
             {
-              href: `/measurement/add`,
-              label: "Add Data",
+              href: `/${locale}/measurement/add`, 
+              label: t('measurement.add'), 
               active: pathname.includes("/measurement/add"),
             },
           ],

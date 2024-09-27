@@ -8,7 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
@@ -34,4 +34,4 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default MainLayout;
+export default HomeLayout;

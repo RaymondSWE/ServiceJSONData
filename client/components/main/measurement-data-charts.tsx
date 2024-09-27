@@ -23,6 +23,7 @@ import { MeasurementSelector } from "../ui/measurement-selector";
 import { StatCard } from "../ui/stat-card";
 import { MeasurementData } from "@/types/types";
 import Loader from "../ui/loader";
+import { useTranslations } from "next-intl";
 
 type GlobalStats = {
   [key: string]: {
@@ -34,6 +35,8 @@ type GlobalStats = {
 
 export function MeasurementDataCharts() {
   const { data: measurementData, loading } = useFetchAllMeasurements();
+  const t = useTranslations("measurementData");
+
 
   const [selectedMeasurementSerial, setSelectedMeasurementSerial] = useState<
     string | null
@@ -121,18 +124,18 @@ export function MeasurementDataCharts() {
     fieldName: string,
   ): JSX.Element => {
     if (measurementValue === undefined || globalStatsValue === undefined) {
-      return <span className="text-gray-500">• N/A</span>;
+      return <span className="text-gray-500">{t("noDataAvailable")}A</span>;
     }
 
     const difference = Math.abs(measurementValue - globalStatsValue);
     const MAX_DIFFERENCE_THRESHOLD = fieldThresholds[fieldName];
 
     if (difference <= MAX_DIFFERENCE_THRESHOLD) {
-      return <span className="text-green-500">Good Device</span>;
+      return <span className="text-green-500">{t("goodDevice")}</span>;
     } else if (difference <= 2 * MAX_DIFFERENCE_THRESHOLD) {
-      return <span className="text-yellow-500">Slight Deviation</span>;
+      return <span className="text-yellow-500">{t("slightDeviation")}</span>;
     } else {
-      return <span className="text-red-500">Anomaly Detected</span>;
+      return <span className="text-red-500">{t("anomalyDetected")}</span>;
     }
   };
 
@@ -165,13 +168,13 @@ export function MeasurementDataCharts() {
     <div className="mx-auto max-w-6xl p-6">
       {selectedMeasurement ? (
         <Heading
-          title={`Device Data Overview: ${selectedMeasurement.serial}`}
-          description="Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices."
-        />
+          title={t("deviceDataOverviewTitle", { serial: selectedMeasurement?.serial || '' })}
+          description={t("deviceDataOverviewDescription")}
+          />
       ) : (
         <Heading
-          title="Select a Device"
-          description="Select a device to view its data."
+          title={t("selectDeviceTitle")}
+          description={t("selectDeviceDescription")}
         />
       )}
       <MeasurementSelector
@@ -185,7 +188,7 @@ export function MeasurementDataCharts() {
       {selectedMeasurement && globalStats && (
         <div className="grid grid-cols-3 gap-4">
           <StatCard
-            fieldLabel="Min Value"
+            fieldLabel={t("statCard.minValueLabel")}
             sensorFields={sensorFields}
             selectedField={selectedMinField}
             onSelectField={setSelectedMinField}
@@ -202,11 +205,12 @@ export function MeasurementDataCharts() {
               globalStats[selectedMinField]?.min,
               selectedMinField,
             )}
-            globalStatLabel="Overall Min"
+            globalStatLabel={t("statCard.overallMinLabel")}
+            selectASensorField={t("statCard.selectASensorField")}
           />
 
           <StatCard
-            fieldLabel="Max Value"
+            fieldLabel={t("statCard.maxValueLabel")}
             sensorFields={sensorFields}
             selectedField={selectedMaxField}
             onSelectField={setSelectedMaxField}
@@ -223,11 +227,13 @@ export function MeasurementDataCharts() {
               globalStats[selectedMaxField]?.max,
               selectedMaxField,
             )}
-            globalStatLabel="Overall Max"
+            globalStatLabel={t("statCard.overallMaxLabel")}
+            selectASensorField={t("statCard.selectASensorField")}
+
           />
 
           <StatCard
-            fieldLabel="Avg Value"
+            fieldLabel={t("statCard.avgValueLabel")}
             sensorFields={sensorFields}
             selectedField={selectedAvgField}
             onSelectField={setSelectedAvgField}
@@ -244,7 +250,8 @@ export function MeasurementDataCharts() {
               globalStats[selectedAvgField]?.avg,
               selectedAvgField,
             )}
-            globalStatLabel="Overall Avg"
+            globalStatLabel={t("statCard.overallAvgLabel")}
+            selectASensorField={t("statCard.selectASensorField")}
           />
         </div>
       )}
@@ -253,26 +260,25 @@ export function MeasurementDataCharts() {
         <div className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Sensor Metrics Comparison</CardTitle>
+              <CardTitle>{t("sensorMetricsComparisonTitle")}</CardTitle>
               <CardDescription>
-                The bars are colored based on their comparison to the global
-                average
+              {t("sensorMetricsComparisonDescription")}
                 <ul className="list-none space-y-1 my-2">
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                    Close to global average (Good device)  
+                    {t("barchart.goodDevice")} 
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-yellow-500 mr-2"></span>
-                    Slight difference from global average (Possible issues)
+                    {t("barchart.slightDeviation")}
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-red-500 mr-2"></span>
-                    Large difference from global average (Possible anomaly)
+                    {t("barchart.anomalyDetected")}
                   </li>
                   <li className="flex items-center">
                     <span className="inline-block h-2 w-2 rounded-full bg-gray-500 mr-2"></span>
-                    No global average available
+                    {t("barchart.noData")}
                   </li>
                 </ul>
               </CardDescription>
