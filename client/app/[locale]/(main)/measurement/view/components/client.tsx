@@ -4,21 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
-import { useRouter, useParams  } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import React from "react";
-import { MeasurementColumn, columns } from "./columns";
+import { MeasurementColumn } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
+import { useTranslatedColumns } from "./columns";
 
 interface MeasurementClientProps {
   data: MeasurementColumn[];
 }
 
-export const MeasurementClient: React.FC<MeasurementClientProps> = ({
-  data,
-}) => {
+export const MeasurementClient: React.FC<MeasurementClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
   const locale = params.locale;
+
+  // Get translated columns
+  const columns = useTranslatedColumns();
 
   return (
     <>

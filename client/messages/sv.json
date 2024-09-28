@@ -36,7 +36,8 @@
         "overallMaxLabel": "Totalt max",
         "overallAvgLabel": "Totalt medel",
         "selectASensorField": "Välj ett sensorfält..."
-    },
+    }
+  },
     "measurementViewPage": {
       "headingTitle": "Enhetsmätningar ({count})",
       "headingDescription": "Hantera dina mätningar för dina enheter.",
@@ -58,7 +59,6 @@
         "copySuccess": "ID kopierat till urklipp! 📋",
         "deleteSuccess": "Mätningen har raderats framgångsrikt. 🗑️"
       }
-    }
     
   }
 }
