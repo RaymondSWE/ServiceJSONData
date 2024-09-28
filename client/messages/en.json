@@ -67,6 +67,13 @@
     "noResults": "No results.",
     "previous": "Previous",
     "next": "Next"
+  },
+  "alertModal": {
+    "title": "Are you sure?",
+    "description": "This action cannot be undone.",
+    "deleteDescription": "This will permanently delete \"{itemName}\".",
+    "cancelButton": "Cancel",
+    "deleteButton": "Delete"
   }
 
 }

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../ui/modal";
 import { Button } from "../ui/button";
+import { useTranslations } from "next-intl";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   itemName,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const t = useTranslations("alertModal");
 
   useEffect(() => {
     setIsMounted(true);
@@ -32,23 +34,24 @@ export const AlertModal: React.FC<AlertModalProps> = ({
     return null;
   }
 
-  const description =
-    `This action cannot be undone.` +
-    (itemName ? ` This will permanently delete "${itemName}".` : "");
+  const description = itemName
+  ? `${t("description")} ${t("deleteDescription", { itemName })}`
+  : t("description");
+
 
   return (
     <Modal
-      title="Are you sure?"
+      title={t("title")}
       description={description}
       isOpen={isOpen}
       onClose={onClose}
     >
       <div className="pt-4 space-x-2 flex item-center justify-end w-full">
         <Button disabled={loading} variant="outline" onClick={onClose}>
-          Cancel
+          {t("cancelButton")}
         </Button>
         <Button disabled={loading} variant="destructive" onClick={onConfirm}>
-          Delete
+          {t("deleteButton")}
         </Button>
       </div>
     </Modal>

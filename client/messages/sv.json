@@ -65,6 +65,15 @@
       "noResults": "Inga resultat.",
       "previous": "Föregående",
       "next": "Nästa"
-    }
+    },
+      "alertModal": {
+        "title": "Är du säker?",
+        "description": "Denna åtgärd kan inte ångras.",
+        "deleteDescription": "Detta kommer permanent att ta bort \"{itemName}\".",
+        "cancelButton": "Avbryt",
+        "deleteButton": "Radera"
+      }
+    
+    
 }
   
