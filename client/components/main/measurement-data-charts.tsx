@@ -35,7 +35,7 @@ type GlobalStats = {
 
 export function MeasurementDataCharts() {
   const { data: measurementData, loading } = useFetchAllMeasurements();
-  const t = useTranslations("measurementData");
+  const t = useTranslations("measurementDataCharts");
 
 
   const [selectedMeasurementSerial, setSelectedMeasurementSerial] = useState<
@@ -165,25 +165,26 @@ export function MeasurementDataCharts() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl p-6">
-      {selectedMeasurement ? (
-        <Heading
-          title={t("deviceDataOverviewTitle", { serial: selectedMeasurement?.serial || '' })}
-          description={t("deviceDataOverviewDescription")}
-          />
-      ) : (
-        <Heading
-          title={t("selectDeviceTitle")}
-          description={t("selectDeviceDescription")}
-        />
-      )}
+    <>
+    {selectedMeasurement ? (
+      <Heading
+      title={t("deviceDataOverviewTitle", { serial: selectedMeasurement?.serial || '' })}
+      description={t("deviceDataOverviewDescription")}
+      />
+    ) : (
+      <Heading
+      title={t("selectDeviceTitle")}
+      description={t("selectDeviceDescription")}
+      />
+    )}
       <MeasurementSelector
         availableMeasurements={availableMeasurements}
         selectedMeasurementSerial={selectedMeasurementSerial}
         setSelectedMeasurementSerial={setSelectedMeasurementSerial}
       />
-
       <Separator className="my-4 " />
+    <div className="mx-auto max-w-7xl p-6">
+
 
       {selectedMeasurement && globalStats && (
         <div className="grid grid-cols-3 gap-4">
@@ -309,5 +310,6 @@ export function MeasurementDataCharts() {
         </div>
       )}
     </div>
+    </>
   );
 }

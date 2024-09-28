@@ -3,7 +3,7 @@
 import { MeasurementForm } from "@/components/main/measurement-form";
 import React from "react";
 
-const CreateMeasurementPage = () => {
+const MeasurementAddPage = () => {
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -13,4 +13,4 @@ const CreateMeasurementPage = () => {
   );
 };
 
-export default CreateMeasurementPage;
+export default MeasurementAddPage;

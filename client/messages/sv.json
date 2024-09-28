@@ -1,7 +1,8 @@
 {
     "homePage": {
-      "welcomeMessage": "Välkommen till hemsidan!"
-    },
+    "homePageTitle": "Hej och välkommen! 👋",
+    "homePageDescription": "Tack för att ni är här! Jag ser fram emot att visa upp vad jag har byggt och hur jag har använt spännande teknologier i detta projekt. Jag hoppas på ett lärorikt och trevligt möte. 😊"
+  },
       "sidebarMenu": {
         "groupLabel": "Enhet",
         "measurement": {
@@ -11,7 +12,7 @@
           "add": "Lägg till data"
         }
       },
-      "measurementData": {
+      "measurementDataCharts": {
         "deviceDataOverviewTitle": "Översikt över enhetsdata: {serial}",
         "deviceDataOverviewDescription": "Utforska detaljerade mätvärden och visualiseringar och jämför dem med andra enheter för att identifiera potentiella avvikelser eller defekta enheter.",
         "selectDeviceTitle": "Välj en enhet",
@@ -35,7 +36,30 @@
         "overallMaxLabel": "Totalt max",
         "overallAvgLabel": "Totalt medel",
         "selectASensorField": "Välj ett sensorfält..."
+    },
+    "measurementViewPage": {
+      "headingTitle": "Enhetsmätningar ({count})",
+      "headingDescription": "Hantera dina mätningar för dina enheter.",
+      "createMeasurementButton": "Skapa Mätning",
+      "columns": {
+        "serial": "Serienummer",
+        "temperature": "Temperatur (°C)",
+        "pressure": "Tryck (Pa)",
+        "length": "Längd (m)",
+        "noise": "Ljudnivå (dB)",
+        "sensors": "Sensorer",
+        "dateCreated": "Skapad Datum"
+      },
+      "measurementCellActions": {
+        "label": "Åtgärder",
+        "copyID": "Kopiera ID",
+        "edit": "Redigera",
+        "delete": "Radera",
+        "copySuccess": "ID kopierat till urklipp! 📋",
+        "deleteSuccess": "Mätningen har raderats framgångsrikt. 🗑️"
+      }
     }
+    
   }
 }
   

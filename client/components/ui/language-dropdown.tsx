@@ -1,25 +1,26 @@
-"use client";
-
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator 
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils"; 
 import { CheckIcon, Globe2Icon } from "lucide-react";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
 import { useDispatch } from "react-redux";
 import { setLocale } from "@/store/locale-slice";
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "./tooltip";
+import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 
-interface FlagDropdownProps {
+interface LanguageDropdownProps {
   isOpen: boolean;
   locale: string;
 }
 
-export const FlagDropdown = ({ isOpen, locale }: FlagDropdownProps) => {
+export const LanguageDropdown = ({ isOpen, locale }: LanguageDropdownProps) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -31,49 +32,45 @@ export const FlagDropdown = ({ isOpen, locale }: FlagDropdownProps) => {
   return (
     <TooltipProvider>
       <DropdownMenu>
-        <Tooltip delayDuration={100}>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost" 
-                className={cn(
-                  "flex items-center px-4 py-3 space-x-2 rounded-lg text-sm font-medium transition-all duration-200",
-                  isOpen ? "w-full justify-center" : "justify-center"
-                )}
+                className={cn("space-x-2 text-sm",)}
               >
                 <Globe2Icon className="w-5 h-5" />
                 <span className={cn(isOpen ? "block" : "hidden")}>
                   {locale === "en" ? "English" : "Swedish"}
                 </span>
-                <span className={cn(!isOpen ? "block text-xs" : "hidden")}>
-                  {locale === "en" ? "ENG" : "SWE"}
-                </span>
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
-          {!isOpen && (
-            <TooltipContent side="right">
-              <p>Select Language</p>
+          {!isOpen &&  (
+            <TooltipContent
+              side="right"
+              sideOffset={5}
+            >
+              {locale === "en" ? "English" : "Swedish"}
             </TooltipContent>
           )}
         </Tooltip>
-
-        <DropdownMenuContent>
+            
+        <DropdownMenuContent align="start" side="right" sideOffset={25}>
+          <DropdownMenuLabel>Choose Language</DropdownMenuLabel>
+          <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => handleLocaleChange("en")}
-            className={cn(locale === "en" && "bg-muted/5"
-            )}
-          >
+            onClick={() => handleLocaleChange("en")}>
             {isOpen ? "English" : "ENG"}
             {locale === "en" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => handleLocaleChange("sv")}
-            className={cn(locale === "sv" && "bg-muted/5")}
-          >
+            onClick={() => handleLocaleChange("sv")}          >
             {isOpen ? "Swedish" : "SWE"}
             {locale === "sv" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
+          <DropdownMenuArrow className="fill-border" />
+
         </DropdownMenuContent>
       </DropdownMenu>
     </TooltipProvider>

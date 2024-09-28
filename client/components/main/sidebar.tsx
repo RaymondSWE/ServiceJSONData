@@ -8,7 +8,7 @@ import { SidebarMenu } from "@/components/main/sidebar-menu";
 import { Button } from "@/components/ui/button";
 import { SidebarToggle } from "@/components/ui/sidebar-toggle";
 import Image from "next/image";
-import { FlagDropdown } from "../ui/flag-dropdown";
+import { LanguageDropdown } from "../ui/language-dropdown";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const Sidebar = () => {
         </Button>
       </div>
       <div className="flex mt-12 justify-center">
-        <FlagDropdown isOpen={isOpen} locale={locale}  />
+        <LanguageDropdown isOpen={isOpen} locale={locale}  />
       </div>
       <div className="relative h-full flex flex-col px-3 overflow-y-auto">
         <SidebarMenu isOpen={isOpen} locale={locale} />

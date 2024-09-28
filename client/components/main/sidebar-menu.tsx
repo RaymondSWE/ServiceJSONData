@@ -115,7 +115,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
             </li>
           ))}
           {user && (
-            <li className="w-full grow flex items-end pb-14 justify-center">
+            <li className="w-full grow flex items-end pb-24 justify-center">
               <TooltipProvider disableHoverableContent>
                 <Tooltip delayDuration={100}>
                   <SignedIn>

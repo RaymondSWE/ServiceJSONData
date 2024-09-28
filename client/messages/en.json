@@ -1,7 +1,8 @@
 {
     "homePage": {
-      "welcomeMessage": "Welcome to the home page!"
-    },
+    "homePageTitle": "Introduction",
+    "homePageDescription": "Welcome to my presentation where I showcase what I’ve built. This includes the latest technologies used in the project and a walk-through of its features. Thank you for the opportunity to present my work."
+  },
 
     "sidebarMenu": {
     "groupLabel": "Device",
@@ -12,7 +13,7 @@
       "add": "Add Data"
     }
   },
-  "measurementData": {
+  "measurementDataCharts": {
     "deviceDataOverviewTitle": "Device Data Overview: {serial}",
     "deviceDataOverviewDescription": "Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices.",
     "selectDeviceTitle": "Select a Device",
@@ -28,16 +29,38 @@
       "slightDeviation": "Slight difference from global average (Possible issues)",
       "anomalyDetected": "Large difference from global average (Possible anomaly)",
       "noData": "No global average available"
+    },
+    "statCard": {
+      "minValueLabel": "Min Value",
+      "maxValueLabel": "Max Value",
+      "avgValueLabel": "Avg Value",
+      "overallMinLabel": "Overall Min",
+      "overallMaxLabel": "Overall Max",
+      "overallAvgLabel": "Overall Avg",
+      "selectASensorField": "Select a sensor field..."
     }
   },
-  "statCard": {
-    "minValueLabel": "Min Value",
-    "maxValueLabel": "Max Value",
-    "avgValueLabel": "Avg Value",
-    "overallMinLabel": "Overall Min",
-    "overallMaxLabel": "Overall Max",
-    "overallAvgLabel": "Overall Avg",
-    "selectASensorField": "Select a sensor field..."
+  "measurementViewPage": {
+    "headingTitle": "Device Measurements ({count})",
+    "headingDescription": "Manage your measurements for your devices.",
+    "createMeasurementButton": "Create Measurement",
+    "columns": {
+      "serial": "Serial",
+      "temperature": "Temperature (°C)",
+      "pressure": "Pressure (Pa)",
+      "length": "Length (m)",
+      "noise": "Noise (dB)",
+      "sensors": "Sensors",
+      "dateCreated": "Date Created"
+    },
+    "measurementCellActions": {
+      "label": "Actions",
+      "copyID": "Copy ID",
+      "edit": "Edit",
+      "delete": "Delete",
+      "copySuccess": "ID copied to clipboard! 📋",
+      "deleteSuccess": "Measurement deleted successfully. 🗑️"
+    }
   }
 
 }

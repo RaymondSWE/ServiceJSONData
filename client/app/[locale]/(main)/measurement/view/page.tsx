@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { useFetchAllMeasurements } from "@/hooks/useMeasurement";
 import Loader from "@/components/ui/loader";
 
-const MeasurementPage = () => {
+const MeasurementViewPage = () => {
   const { data, loading } = useFetchAllMeasurements();
 
   if (loading) return <Loader />;
@@ -37,11 +37,11 @@ const MeasurementPage = () => {
 
   return (
     <div className="flex-col">
-      <div className="flex-1 space-y-4 mt-4">
+      <div className="flex-1 space-y-4 mt-4  p-8">
         <MeasurementClient data={formattedMeasurements} />
       </div>
     </div>
   );
 };
 
-export default MeasurementPage;
+export default MeasurementViewPage;
