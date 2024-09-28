@@ -72,7 +72,45 @@
         "deleteDescription": "Detta kommer permanent att ta bort \"{itemName}\".",
         "cancelButton": "Avbryt",
         "deleteButton": "Radera"
-      }
+      },
+      "measurementForm": {
+        "titleCreate": "Skapa Mätning",
+        "titleEdit": "Redigera Mätning",
+        "descriptionCreate": "Skapa en ny mätning",
+        "descriptionEdit": "Uppdatera dina mätdata",
+        "toastCreate": "Mätningen skapad 🎉",
+        "toastUpdate": "Mätningen uppdaterad 🎉",
+        "toastDelete": "Mätningen har raderats framgångsrikt. 🗑️",
+        "labels": {
+          "serial": "Serienummer",
+          "temperature": "Temperatur (°C)",
+          "pressure": "Tryck (Pa)",
+          "length": "Längd (m)",
+          "noise": "Ljudnivå (dB)",
+          "sensorA": "Sensor A",
+          "sensorB": "Sensor B",
+          "sensorC": "Sensor C",
+          "sensorD": "Sensor D",
+          "sensorE": "Sensor E",
+          "sensorF": "Sensor F",
+          "sensorG": "Sensor G"
+        },
+        "buttons": {
+          "delete": "Radera Mätning",
+          "submitCreate": "Skapa Mätning",
+          "submitEdit": "Uppdatera Mätning"
+        }
+      },
+        "languageDropdown": {
+          "chooseLanguage": "Välj Språk",
+          "english": "Engelska",
+          "swedish": "Svenska",
+          "tooltipEnglish": "Byt till Engelska",
+          "tooltipSwedish": "Byt till Svenska",
+          "shortEnglish": "ENG",
+          "shortSwedish": "SWE"
+        }
+      
     
     
 }

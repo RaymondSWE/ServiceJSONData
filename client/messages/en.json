@@ -74,6 +74,43 @@
     "deleteDescription": "This will permanently delete \"{itemName}\".",
     "cancelButton": "Cancel",
     "deleteButton": "Delete"
+  },
+  "measurementForm": {
+    "titleCreate": "Create Measurement",
+    "titleEdit": "Edit Measurement",
+    "descriptionCreate": "Create a new measurement",
+    "descriptionEdit": "Update your measurement data",
+    "toastCreate": "Measurement created 🎉",
+    "toastUpdate": "Measurement updated 🎉",
+    "toastDelete": "Measurement deleted successfully. 🗑️",
+    "labels": {
+      "serial": "Serial",
+      "temperature": "Temperature (°C)",
+      "pressure": "Pressure (Pa)",
+      "length": "Length (m)",
+      "noise": "Noise (dB)",
+      "sensorA": "Sensor A",
+      "sensorB": "Sensor B",
+      "sensorC": "Sensor C",
+      "sensorD": "Sensor D",
+      "sensorE": "Sensor E",
+      "sensorF": "Sensor F",
+      "sensorG": "Sensor G"
+    },
+    "buttons": {
+      "delete": "Delete Measurement",
+      "submitCreate": "Create Measurement",
+      "submitEdit": "Update Measurement"
+    }
+  },
+  "languageDropdown": {
+    "chooseLanguage": "Choose Language",
+    "english": "English",
+    "swedish": "Swedish",
+    "tooltipEnglish": "Switch to English",
+    "tooltipSwedish": "Switch to Swedish",
+    "shortEnglish": "ENG",
+    "shortSwedish": "SWE"
   }
 
 }

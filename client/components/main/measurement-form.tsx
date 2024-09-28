@@ -25,6 +25,7 @@ import { AlertModal } from "@/components/ui/alert-modal";
 import { MeasurementData } from "@/types/types";
 import { formSchema } from "@/schemas/measurement";
 import { handleError } from "@/lib/error-handler";
+import { useTranslations } from "next-intl";
 interface MeasurementFormProps {
   initialMeasurement: MeasurementData | null;
 }
@@ -37,17 +38,18 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations("measurementForm");
 
-  const title = initialMeasurement ? "Edit Measurement" : "Create Measurement";
+  const title = initialMeasurement ? t("titleEdit") : t("titleCreate");
   const description = initialMeasurement
-    ? "Update your measurement data"
-    : "Create a new measurement";
+    ? t("descriptionEdit")
+    : t("descriptionCreate");
   const toastMessage = initialMeasurement
-    ? "Measurement updated 🎉"
-    : "Measurement created 🎉";
+    ? t("toastUpdate")
+    : t("toastCreate");
   const action = initialMeasurement
-    ? "Update Measurement"
-    : "Create Measurement";
+    ? t("buttons.submitEdit")
+    : t("buttons.submitCreate");
 
   const form = useForm<MeasurementFormValues>({
     resolver: zodResolver(formSchema),
@@ -104,7 +106,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         );
         router.push("/measurement/view");
         router.refresh();
-        toast.success("Measurement deleted successfully. 🗑️");
+        toast.success(t("toastDelete"));
       }
     } catch (error) {
       handleError(error);
@@ -134,7 +136,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
             className="flex items-center gap-2"
           >
             <Trash2 className="w-4 h-4" />
-            Delete Measurement
+            {t("buttons.delete")}
           </Button>
         )}
       </div>
@@ -151,11 +153,11 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="serial"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Serial</FormLabel>
+                  <FormLabel>{t("labels.serial")}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Serial number"
+                      placeholder={t("labels.serial")}
                       {...field}
                     />
                   </FormControl>
@@ -168,12 +170,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="temperature"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Temperature (°C)</FormLabel>
+                  <FormLabel>{t("labels.temperature")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Temperature"
+                      placeholder={t("labels.temperature")}
                       {...field}
                     />
                   </FormControl>
@@ -186,12 +188,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="pressure"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pressure (Pa)</FormLabel>
+                  <FormLabel>{t("labels.pressure")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Pressure"
+                      placeholder={t("labels.pressure")}
                       {...field}
                     />
                   </FormControl>
@@ -204,12 +206,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="length"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Length (m)</FormLabel>
+                  <FormLabel>{t("labels.length")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Length"
+                      placeholder={t("labels.length")}
                       {...field}
                     />
                   </FormControl>
@@ -222,12 +224,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="noise"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Noise (dB)</FormLabel>
+                  <FormLabel>{t("labels.noise")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Noise"
+                      placeholder={t("labels.noise")}
                       {...field}
                     />
                   </FormControl>
@@ -242,12 +244,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.a"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor A</FormLabel>
+                  <FormLabel>{t("labels.sensorA")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor A"
+                      placeholder={t("labels.sensorA")}
                       {...field}
                     />
                   </FormControl>
@@ -260,12 +262,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.b"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor B</FormLabel>
+                  <FormLabel>{t("labels.sensorB")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor B"
+                      placeholder={t("labels.sensorB")}
                       {...field}
                     />
                   </FormControl>
@@ -278,12 +280,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.c"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor C</FormLabel>
+                  <FormLabel>{t("labels.sensorC")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor C"
+                      placeholder={t("labels.sensorC")}
                       {...field}
                     />
                   </FormControl>
@@ -296,12 +298,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.d"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor D</FormLabel>
+                  <FormLabel>{t("labels.sensorD")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor D"
+                      placeholder={t("labels.sensorD")}
                       {...field}
                     />
                   </FormControl>
@@ -314,12 +316,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.e"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor E</FormLabel>
+                  <FormLabel>{t("labels.sensorE")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor E"
+                      placeholder={t("labels.sensorE")}
                       {...field}
                     />
                   </FormControl>
@@ -332,12 +334,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.f"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor F</FormLabel>
+                  <FormLabel>{t("labels.sensorF")}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="Sensor F"
+                      placeholder={t("labels.sensorF")}
                       {...field}
                     />
                   </FormControl>
@@ -350,12 +352,12 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
               name="rawSensorData.g"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sensor G</FormLabel>
+                  <FormLabel>{t("labels.sensorG")}</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
                       disabled={loading}
-                      placeholder="Sensor G"
+                      placeholder={t("labels.sensorG")}
                       {...field}
                     />
                   </FormControl>
