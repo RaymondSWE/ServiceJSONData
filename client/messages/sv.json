@@ -109,7 +109,15 @@
           "tooltipSwedish": "Byt till Svenska",
           "shortEnglish": "ENG",
           "shortSwedish": "SWE"
-        }
+        },
+          "measurementSelector": {
+            "selectSerial": "Välj ett serienummer",
+            "searchPlaceholder": "Sök efter serienummer..",
+            "noMeasurementFound": "Ingen mätning hittades.",
+            "measurementsGroupTitle": "Mätningar"
+          }
+        
+        
       
     
     

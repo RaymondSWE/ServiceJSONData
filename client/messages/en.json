@@ -111,6 +111,12 @@
     "tooltipSwedish": "Switch to Swedish",
     "shortEnglish": "ENG",
     "shortSwedish": "SWE"
+  },
+  "measurementSelector": {
+    "selectSerial": "Select a serial",
+    "searchPlaceholder": "Search by serial..",
+    "noMeasurementFound": "No measurement found.",
+    "measurementsGroupTitle": "Measurements"
   }
 
 }

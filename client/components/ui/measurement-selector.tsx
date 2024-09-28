@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "./button";
 import { MenuIcon, CheckIcon } from "lucide-react";
@@ -10,6 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from "./command";
+import { useTranslations } from "next-intl"; 
 
 interface MeasurementSelectorProps {
   availableMeasurements: { value: string; label: string }[];
@@ -23,6 +26,7 @@ export function MeasurementSelector({
   setSelectedMeasurementSerial,
 }: MeasurementSelectorProps) {
   const [measurementComboboxOpen, setMeasurementComboboxOpen] = useState(false);
+  const t = useTranslations("measurementSelector"); 
 
   return (
     <Popover
@@ -38,16 +42,19 @@ export function MeasurementSelector({
         >
           {selectedMeasurementSerial
             ? `${selectedMeasurementSerial}`
-            : "Select a serial"}
+            : t("selectSerial")} 
           <MenuIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent>
         <Command>
-          <CommandInput placeholder="Search by serial.." className="h-9" />
+          <CommandInput
+            placeholder={t("searchPlaceholder")} 
+            className="h-9"
+          />
           <CommandList>
-            <CommandEmpty>No measurement found.</CommandEmpty>
-            <CommandGroup title="Measurements">
+            <CommandEmpty>{t("noMeasurementFound")}</CommandEmpty> 
+            <CommandGroup title={t("measurementsGroupTitle")}> 
               {availableMeasurements.map((measurement) => (
                 <CommandItem
                   key={measurement.value}
