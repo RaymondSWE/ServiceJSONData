@@ -61,6 +61,12 @@
       "copySuccess": "ID copied to clipboard! 📋",
       "deleteSuccess": "Measurement deleted successfully. 🗑️"
     }
+  },
+  "dataTable": {
+    "searchPlaceholder": "Search..",
+    "noResults": "No results.",
+    "previous": "Previous",
+    "next": "Next"
   }
 
 }

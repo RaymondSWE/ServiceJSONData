@@ -59,7 +59,12 @@
         "copySuccess": "ID kopierat till urklipp! 📋",
         "deleteSuccess": "Mätningen har raderats framgångsrikt. 🗑️"
       }
-    
-  }
+  },
+    "dataTable": {
+      "searchPlaceholder": "Sök..",
+      "noResults": "Inga resultat.",
+      "previous": "Föregående",
+      "next": "Nästa"
+    }
 }
   
