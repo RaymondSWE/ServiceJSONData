@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams  } from "next/navigation";
 import React from "react";
 import { MeasurementColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
@@ -17,6 +17,8 @@ export const MeasurementClient: React.FC<MeasurementClientProps> = ({
   data,
 }) => {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale;
 
   return (
     <>
@@ -25,7 +27,7 @@ export const MeasurementClient: React.FC<MeasurementClientProps> = ({
           title={`Device Measurements (${data.length})`}
           description="Manage your measurements for your devices."
         />
-        <Button onClick={() => router.push("/measurement/add")}>
+        <Button onClick={() => router.push(`/${locale}/measurement/add`)}>
           <Plus className="mr-2 h-4 w-4" />
           Create Measurement
         </Button>

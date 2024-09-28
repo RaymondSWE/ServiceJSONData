@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, Edit2, MoreHorizontal, Trash2 } from "lucide-react";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { deleteMeasurement } from "@/services/measurement-service";
 import { handleError } from "@/lib/error-handler";
@@ -22,6 +22,8 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale; 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +36,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     try {
       setLoading(true);
       await deleteMeasurement(Number(data.id));
-      window.location.reload(); // no idea why router.reload() doesn't work
+      window.location.reload();
       toast.success("Measurement deleted successfully. 🗑️");
     } catch (error) {
       handleError(error);
@@ -43,6 +45,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       setOpen(false);
     }
   };
+
   return (
     <>
       <AlertModal
@@ -65,7 +68,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
             Copy ID
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/measurement/${data.id}`)}
+            onClick={() => router.push(`/${locale}/measurement/${data.id}`)}
           >
             <Edit2 className="mr-2 h-4 w-4" />
             Edit
