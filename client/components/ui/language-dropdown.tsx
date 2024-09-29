@@ -11,13 +11,9 @@ import { Button } from "@/components/ui/button";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils"; 
 import { CheckIcon, Globe2Icon } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { setLocale } from "@/store/locale-slice";
-import { RootState } from "@/store/store";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "./tooltip";
 import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react"; 
 
 interface LanguageDropdownProps {
   isSidebarOpen: boolean;
@@ -26,23 +22,14 @@ interface LanguageDropdownProps {
 export const LanguageDropdown = ({ isSidebarOpen }: LanguageDropdownProps) => {
   const { locale } = useParams();
   const router = useRouter();
-  const dispatch = useDispatch();
-  const currentLocale = useSelector((state: RootState) => state.locale.locale); 
   const t = useTranslations("languageDropdown");
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (locale && locale !== currentLocale) {
-      if (typeof locale === 'string') {
-        dispatch(setLocale(locale));
-      }
-    }
-  }, [locale, currentLocale, dispatch]);
+
 
   const handleLocaleChange = (newLocale: string) => {
-    if (newLocale !== currentLocale) {
-      const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
-      dispatch(setLocale(newLocale));
+    if (newLocale !== locale) {
+      const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
       router.replace(newPathname);
     }
   };
@@ -59,7 +46,7 @@ export const LanguageDropdown = ({ isSidebarOpen }: LanguageDropdownProps) => {
               >
                 <Globe2Icon className="w-5 h-5" />
                 <span className={cn(isSidebarOpen ? "block" : "hidden")}>
-                  {currentLocale === "en" ? t("english") : t("swedish")}
+                  {locale === "en" ? t("english") : t("swedish")}
                 </span>
               </Button>
             </DropdownMenuTrigger>
@@ -69,7 +56,7 @@ export const LanguageDropdown = ({ isSidebarOpen }: LanguageDropdownProps) => {
               side="right"
               sideOffset={5}
             >
-              {currentLocale === "en" ? t("tooltipEnglish") : t("tooltipSwedish")}
+              {locale === "en" ? t("tooltipEnglish") : t("tooltipSwedish")}
             </TooltipContent>
           )}
         </Tooltip>
@@ -81,13 +68,13 @@ export const LanguageDropdown = ({ isSidebarOpen }: LanguageDropdownProps) => {
             onClick={() => handleLocaleChange("en")}
           >
             {isSidebarOpen ? t("english") : t("shortEnglish")}
-            {currentLocale === "en" && <CheckIcon className="w-4 h-4 ml-auto" />}
+            {locale === "en" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => handleLocaleChange("sv")}
           >
             {isSidebarOpen ? t("swedish") : t("shortSwedish")}
-            {currentLocale === "sv" && <CheckIcon className="w-4 h-4 ml-auto" />}
+            {locale === "sv" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
           <DropdownMenuArrow className="fill-border" />
         </DropdownMenuContent>

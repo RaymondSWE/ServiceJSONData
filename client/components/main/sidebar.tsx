@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 import { SidebarToggle } from "@/components/ui/sidebar-toggle";
 import Image from "next/image";
 import { LanguageDropdown } from "../ui/language-dropdown";
+import { useParams } from "next/navigation";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isSidebarOpen);
-  const locale = useSelector((state: RootState) => state.locale.locale);
+  const { locale } = useParams() as { locale: string };
 
   return (
     <aside
@@ -55,7 +56,7 @@ const Sidebar = () => {
         <LanguageDropdown isSidebarOpen={isSidebarOpen}  />
       </div>
       <div className="relative h-full flex flex-col px-3 overflow-y-auto">
-        <SidebarMenu isSidebarOpen={isSidebarOpen} locale={locale} />
+        <SidebarMenu isSidebarOpen={isSidebarOpen} locale={locale as string} />
       </div>
     </aside>
   );
