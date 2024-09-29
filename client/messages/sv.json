@@ -54,9 +54,9 @@
         "minValueLabel": "Minvärde",
         "maxValueLabel": "Maxvärde",
         "avgValueLabel": "Medelvärde",
-        "overallMinLabel": "Totalt min",
-        "overallMaxLabel": "Totalt max",
-        "overallAvgLabel": "Totalt medel",
+        "overallMinLabel": "Lägsta minvärde",
+        "overallMaxLabel": "Högsta maxvärde",
+        "overallAvgLabel": "Medelvärden",
         "selectASensorField": "Välj ett sensorfält..."
     }
   },

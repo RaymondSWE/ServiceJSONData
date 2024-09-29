@@ -21,7 +21,7 @@ interface StatCardProps {
   selectedMeasurementValue: number | undefined;
   globalStatLabel: string;
   globalStatValue: number | undefined;
-  comparisonIndicator: JSX.Element;
+  comparisonIndicator?: JSX.Element;
   selectASensorField: string;
 }
 

@@ -198,14 +198,6 @@ export function MeasurementDataCharts() {
                 ?.key || "",
             )}
             globalStatValue={globalStats[selectedMinField]?.min}
-            comparisonIndicator={getComparisonIndicator(
-              getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedMinField)
-                  ?.key || "",
-              ),
-              globalStats[selectedMinField]?.min,
-              selectedMinField,
-            )}
             globalStatLabel={t("statCard.overallMinLabel")}
             selectASensorField={t("statCard.selectASensorField")}
           />
@@ -220,14 +212,6 @@ export function MeasurementDataCharts() {
                 ?.key || "",
             )}
             globalStatValue={globalStats[selectedMaxField]?.max}
-            comparisonIndicator={getComparisonIndicator(
-              getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedMaxField)
-                  ?.key || "",
-              ),
-              globalStats[selectedMaxField]?.max,
-              selectedMaxField,
-            )}
             globalStatLabel={t("statCard.overallMaxLabel")}
             selectASensorField={t("statCard.selectASensorField")}
 
@@ -243,14 +227,6 @@ export function MeasurementDataCharts() {
                 ?.key || "",
             )}
             globalStatValue={globalStats[selectedAvgField]?.avg}
-            comparisonIndicator={getComparisonIndicator(
-              getSelectedMeasurementValue(
-                sensorFields.find((field) => field.name === selectedAvgField)
-                  ?.key || "",
-              ),
-              globalStats[selectedAvgField]?.avg,
-              selectedAvgField,
-            )}
             globalStatLabel={t("statCard.overallAvgLabel")}
             selectASensorField={t("statCard.selectASensorField")}
           />
