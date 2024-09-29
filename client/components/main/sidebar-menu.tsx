@@ -63,7 +63,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
               )}
               {menus.map(
                 ({ href, label, icon: Icon, active, submenus }, index) =>
-                  submenus.length === 0 ? (
+                  (submenus ?? []).length === 0 ? (
                     <div className="w-full" key={index}>
                       <TooltipProvider disableHoverableContent>
                         <Tooltip delayDuration={100}>
@@ -106,7 +106,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                         icon={Icon}
                         label={label}
                         active={active}
-                        submenus={submenus}
+                        submenus={submenus ?? []}
                         isOpen={isOpen}
                       />
                     </div>

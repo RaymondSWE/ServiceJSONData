@@ -1,6 +1,6 @@
-"use client"; // Ensure this file is a client component
+"use client"; 
 
-import { Ruler, LucideIcon } from "lucide-react";
+import { Home, Info, Ruler, LucideIcon } from "lucide-react"; 
 import { useTranslations } from "next-intl";
 
 type Submenu = {
@@ -14,7 +14,7 @@ type Menu = {
   label: string;
   active: boolean;
   icon: LucideIcon;
-  submenus: Submenu[];
+  submenus?: Submenu[];
 };
 
 type Group = {
@@ -29,7 +29,27 @@ export function getMenuList(pathname: string, locale: string): Group[] {
 
   return [
     {
-      groupLabel: t('groupLabel'),  
+      groupLabel: t('groupLabelGeneral'), 
+      menus: [
+        {
+          href: `/${locale}`, 
+          label: t('home.label'), 
+          active: pathname === `/${locale}`, 
+          icon: Home,
+          submenus: []
+        },
+        
+        {
+          href: `/${locale}/about`, 
+          label: t('about.label'),
+          active: pathname.includes("/about"),
+          icon: Info, 
+          submenus: []
+        },
+      ],
+    },
+    {
+      groupLabel: t('groupLabelDevice'),  
       menus: [
         {
           href: `/${locale}/measurement`, 

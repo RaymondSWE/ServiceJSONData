@@ -3,8 +3,18 @@
     "homePageTitle": "Hej och välkommen! 👋",
     "homePageDescription": "Tack för att ni är här! Jag ser fram emot att visa upp vad jag har byggt och hur jag har använt spännande teknologier i detta projekt. Jag hoppas på ett lärorikt och trevligt möte. 😊"
   },
-      "sidebarMenu": {
-        "groupLabel": "Enhet",
+          "sidebarMenu": {
+        "groupLabelGeneral": "Allmänt",
+        "groupLabelDevice": "Enheter",
+        "home": {
+          "label": "Hem"
+        },
+        "about": {
+          "label": "Om"
+        },
+        "useCase": {
+          "label": "Användningsfall"
+        },
         "measurement": {
           "label": "Mätdata",
           "dashboard": "Instrumentpanel",
@@ -23,6 +33,18 @@
         "slightDeviation": "Liten avvikelse",
         "anomalyDetected": "Avvikelse upptäckt",
         "noDataAvailable": "N/A",
+        "columns": {
+          "temperature": "Temperatur (°C)",
+          "pressure": "Tryck (Pa)",
+          "length": "Längd (m)",
+          "noise": "Ljudnivå (dB)",
+          "sensorA": "Sensor A",
+          "sensorB": "Sensor B",
+          "sensorC": "Sensor C",
+          "sensorD": "Sensor D",
+          "sensorE": "Sensor E",
+          "sensorF": "Sensor F"
+        },
         "barchart": {
           "goodDevice": "Nära globalt genomsnitt (Bra enhet)",
           "slightDeviation": "Liten skillnad från globalt genomsnitt (Möjliga problem)",

@@ -1,11 +1,21 @@
 {
     "homePage": {
-    "homePageTitle": "Introduction",
-    "homePageDescription": "Welcome to my presentation where I showcase what I’ve built. This includes the latest technologies used in the project and a walk-through of its features. Thank you for the opportunity to present my work."
+      "homePageTitle": "Hello and welcome! 👋",
+      "homePageDescription": "Thank you for being here! I'm excited to show you what I've built and how I've used exciting technologies in this project. I look forward to a productive and enjoyable meeting. 😊"
   },
 
-    "sidebarMenu": {
-    "groupLabel": "Device",
+  "sidebarMenu": {
+    "groupLabelGeneral": "General",
+    "groupLabelDevice": "Devices",
+    "home": {
+      "label": "Home"
+    },
+    "about": {
+      "label": "About"
+    },
+    "useCase": {
+      "label": "Use Case"
+    },
     "measurement": {
       "label": "Measurement Data",
       "dashboard": "Dashboard",
