@@ -13,7 +13,6 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
-
 interface StatCardProps {
   fieldLabel: string;
   sensorFields: { name: string; key: string }[];
@@ -23,6 +22,7 @@ interface StatCardProps {
   globalStatLabel: string;
   globalStatValue: number | undefined;
   comparisonIndicator: JSX.Element;
+  selectASensorField: string;
 }
 
 export function StatCard({
@@ -34,6 +34,7 @@ export function StatCard({
   globalStatLabel,
   globalStatValue,
   comparisonIndicator,
+  selectASensorField,
 }: StatCardProps) {
   const [fieldComboboxOpen, setFieldComboboxOpen] = useState(false);
 
@@ -54,7 +55,7 @@ export function StatCard({
           <PopoverContent>
             <Command>
               <CommandInput
-                placeholder="Select a sensor field..."
+                placeholder={selectASensorField}
                 className="text-xs"
               />
               <CommandList>

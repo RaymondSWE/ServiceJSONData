@@ -1,0 +1,147 @@
+{
+    "homePage": {
+    "homePageTitle": "Hej och välkommen! 👋",
+    "homePageDescription": "Tack för att ni är här! Jag ser fram emot att visa upp vad jag har byggt och hur jag har använt spännande teknologier i detta projekt. Jag hoppas på ett lärorikt och trevligt möte. 😊"
+  },
+          "sidebarMenu": {
+        "groupLabelGeneral": "Allmänt",
+        "groupLabelDevice": "Enheter",
+        "home": {
+          "label": "Hem"
+        },
+        "about": {
+          "label": "Om"
+        },
+        "useCase": {
+          "label": "Användningsfall"
+        },
+        "measurement": {
+          "label": "Mätdata",
+          "dashboard": "Instrumentpanel",
+          "view": "Visa data",
+          "add": "Lägg till data"
+        }
+      },
+      "measurementDataCharts": {
+        "deviceDataOverviewTitle": "Översikt över enhetsdata: {serial}",
+        "deviceDataOverviewDescription": "Utforska detaljerade mätvärden och visualiseringar och jämför dem med andra enheter för att identifiera potentiella avvikelser eller defekta enheter.",
+        "selectDeviceTitle": "Välj en enhet",
+        "selectDeviceDescription": "Välj en enhet för att visa dess data.",
+        "sensorMetricsComparisonTitle": "Jämförelse av sensormetrik",
+        "sensorMetricsComparisonDescription": "Staplarna är färgade baserat på deras jämförelse med det globala genomsnittet.",
+        "goodDevice": "Bra enhet",
+        "slightDeviation": "Liten avvikelse",
+        "anomalyDetected": "Avvikelse upptäckt",
+        "noDataAvailable": "N/A",
+        "columns": {
+          "temperature": "Temperatur (°C)",
+          "pressure": "Tryck (Pa)",
+          "length": "Längd (m)",
+          "noise": "Ljudnivå (dB)",
+          "sensorA": "Sensor A",
+          "sensorB": "Sensor B",
+          "sensorC": "Sensor C",
+          "sensorD": "Sensor D",
+          "sensorE": "Sensor E",
+          "sensorF": "Sensor F"
+        },
+        "barchart": {
+          "goodDevice": "Nära globalt genomsnitt (Bra enhet)",
+          "slightDeviation": "Liten skillnad från globalt genomsnitt (Möjliga problem)",
+          "anomalyDetected": "Stor skillnad från globalt genomsnitt (Möjlig avvikelse)",
+          "noData": "Ingen globalt genomsnitt tillgängligt"
+        }, "statCard": {
+        "minValueLabel": "Minvärde",
+        "maxValueLabel": "Maxvärde",
+        "avgValueLabel": "Medelvärde",
+        "overallMinLabel": "Totalt min",
+        "overallMaxLabel": "Totalt max",
+        "overallAvgLabel": "Totalt medel",
+        "selectASensorField": "Välj ett sensorfält..."
+    }
+  },
+    "measurementViewPage": {
+      "headingTitle": "Enhetsmätningar ({count})",
+      "headingDescription": "Hantera dina mätningar för dina enheter.",
+      "createMeasurementButton": "Skapa Mätning",
+      "columns": {
+        "serial": "Serienummer",
+        "temperature": "Temperatur (°C)",
+        "pressure": "Tryck (Pa)",
+        "length": "Längd (m)",
+        "noise": "Ljudnivå (dB)",
+        "sensors": "Sensorer",
+        "dateCreated": "Skapad Datum"
+      },
+      "measurementCellActions": {
+        "label": "Åtgärder",
+        "copyID": "Kopiera ID",
+        "edit": "Redigera",
+        "delete": "Radera",
+        "copySuccess": "ID kopierat till urklipp! 📋",
+        "deleteSuccess": "Mätningen har raderats framgångsrikt. 🗑️"
+      }
+  },
+    "dataTable": {
+      "searchPlaceholder": "Sök..",
+      "noResults": "Inga resultat.",
+      "previous": "Föregående",
+      "next": "Nästa"
+    },
+      "alertModal": {
+        "title": "Är du säker?",
+        "description": "Denna åtgärd kan inte ångras.",
+        "deleteDescription": "Detta kommer permanent att ta bort \"{itemName}\".",
+        "cancelButton": "Avbryt",
+        "deleteButton": "Radera"
+      },
+      "measurementForm": {
+        "titleCreate": "Skapa Mätning",
+        "titleEdit": "Redigera Mätning",
+        "descriptionCreate": "Skapa en ny mätning",
+        "descriptionEdit": "Uppdatera dina mätdata",
+        "toastCreate": "Mätningen skapad 🎉",
+        "toastUpdate": "Mätningen uppdaterad 🎉",
+        "toastDelete": "Mätningen har raderats framgångsrikt. 🗑️",
+        "labels": {
+          "serial": "Serienummer",
+          "temperature": "Temperatur (°C)",
+          "pressure": "Tryck (Pa)",
+          "length": "Längd (m)",
+          "noise": "Ljudnivå (dB)",
+          "sensorA": "Sensor A",
+          "sensorB": "Sensor B",
+          "sensorC": "Sensor C",
+          "sensorD": "Sensor D",
+          "sensorE": "Sensor E",
+          "sensorF": "Sensor F",
+          "sensorG": "Sensor G"
+        },
+        "buttons": {
+          "delete": "Radera Mätning",
+          "submitCreate": "Skapa Mätning",
+          "submitEdit": "Uppdatera Mätning"
+        }
+      },
+        "languageDropdown": {
+          "chooseLanguage": "Välj Språk",
+          "english": "Engelska",
+          "swedish": "Svenska",
+          "tooltipEnglish": "Byt till Engelska",
+          "tooltipSwedish": "Byt till Svenska",
+          "shortEnglish": "ENG",
+          "shortSwedish": "SWE"
+        },
+          "measurementSelector": {
+            "selectSerial": "Välj ett serienummer",
+            "searchPlaceholder": "Sök efter serienummer..",
+            "noMeasurementFound": "Ingen mätning hittades.",
+            "measurementsGroupTitle": "Mätningar"
+          }
+        
+        
+      
+    
+    
+}
+  

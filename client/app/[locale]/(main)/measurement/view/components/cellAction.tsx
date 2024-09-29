@@ -11,10 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Copy, Edit2, MoreHorizontal, Trash2 } from "lucide-react";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { deleteMeasurement } from "@/services/measurement-service";
 import { handleError } from "@/lib/error-handler";
+import { useTranslations } from "next-intl";
 
 interface CellActionProps {
   data: MeasurementColumn;
@@ -22,20 +23,24 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale; 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("measurementViewPage.measurementCellActions");
+
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("ID copied to clipboard! 📋");
+    toast.success(t("copySuccess"));
   };
 
   const onDelete = async () => {
     try {
       setLoading(true);
       await deleteMeasurement(Number(data.id));
-      window.location.reload(); // no idea why router.reload() doesn't work
-      toast.success("Measurement deleted successfully. 🗑️");
+      window.location.reload();
+      toast.success(t("deleteSuccess"));
     } catch (error) {
       handleError(error);
     } finally {
@@ -43,6 +48,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       setOpen(false);
     }
   };
+
   return (
     <>
       <AlertModal
@@ -54,25 +60,25 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">Open options</span>
-            <MoreHorizontal />
+          <span className="sr-only">{t("label")}</span>
+          <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => onCopy(data.id)}>
+        <DropdownMenuLabel>{t("label")}</DropdownMenuLabel>
+        <DropdownMenuItem onClick={() => onCopy(data.id)}>
             <Copy className="mr-2 h-4 w-4" />
-            Copy ID
+            {t("copyID")}
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/measurement/${data.id}`)}
+            onClick={() => router.push(`/${locale}/measurement/${data.id}`)}
           >
             <Edit2 className="mr-2 h-4 w-4" />
-            Edit
+            {t("edit")}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash2 className="mr-2 h-4 w-4" />
-            Delete
+            {t("delete")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

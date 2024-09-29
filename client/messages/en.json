@@ -1,0 +1,133 @@
+{
+    "homePage": {
+      "homePageTitle": "Hello and welcome! 👋",
+      "homePageDescription": "Thank you for being here! I'm excited to show you what I've built and how I've used exciting technologies in this project. I look forward to a productive and enjoyable meeting. 😊"
+  },
+
+  "sidebarMenu": {
+    "groupLabelGeneral": "General",
+    "groupLabelDevice": "Devices",
+    "home": {
+      "label": "Home"
+    },
+    "about": {
+      "label": "About"
+    },
+    "useCase": {
+      "label": "Use Case"
+    },
+    "measurement": {
+      "label": "Measurement Data",
+      "dashboard": "Dashboard",
+      "view": "View Data",
+      "add": "Add Data"
+    }
+  },
+  "measurementDataCharts": {
+    "deviceDataOverviewTitle": "Device Data Overview: {serial}",
+    "deviceDataOverviewDescription": "Explore detailed metrics and visualisation and compare them to all other devices to identify potential anomalies or faulty devices.",
+    "selectDeviceTitle": "Select a Device",
+    "selectDeviceDescription": "Select a device to view its data.",
+    "sensorMetricsComparisonTitle": "Sensor Metrics Comparison",
+    "sensorMetricsComparisonDescription": "The bars are colored based on their comparison to the global average.",
+    "goodDevice": "Good Device",
+    "slightDeviation": "Slight Deviation",
+    "anomalyDetected": "Anomaly Detected",
+    "noDataAvailable": "N/A",
+    "barchart": {
+      "goodDevice": "Close to global average (Good device)",
+      "slightDeviation": "Slight difference from global average (Possible issues)",
+      "anomalyDetected": "Large difference from global average (Possible anomaly)",
+      "noData": "No global average available"
+    },
+    "statCard": {
+      "minValueLabel": "Min Value",
+      "maxValueLabel": "Max Value",
+      "avgValueLabel": "Avg Value",
+      "overallMinLabel": "Overall Min",
+      "overallMaxLabel": "Overall Max",
+      "overallAvgLabel": "Overall Avg",
+      "selectASensorField": "Select a sensor field..."
+    }
+  },
+  "measurementViewPage": {
+    "headingTitle": "Device Measurements ({count})",
+    "headingDescription": "Manage your measurements for your devices.",
+    "createMeasurementButton": "Create Measurement",
+    "columns": {
+      "serial": "Serial",
+      "temperature": "Temperature (°C)",
+      "pressure": "Pressure (Pa)",
+      "length": "Length (m)",
+      "noise": "Noise (dB)",
+      "sensors": "Sensors",
+      "dateCreated": "Date Created"
+    },
+    "measurementCellActions": {
+      "label": "Actions",
+      "copyID": "Copy ID",
+      "edit": "Edit",
+      "delete": "Delete",
+      "copySuccess": "ID copied to clipboard! 📋",
+      "deleteSuccess": "Measurement deleted successfully. 🗑️"
+    }
+  },
+  "dataTable": {
+    "searchPlaceholder": "Search..",
+    "noResults": "No results.",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "alertModal": {
+    "title": "Are you sure?",
+    "description": "This action cannot be undone.",
+    "deleteDescription": "This will permanently delete \"{itemName}\".",
+    "cancelButton": "Cancel",
+    "deleteButton": "Delete"
+  },
+  "measurementForm": {
+    "titleCreate": "Create Measurement",
+    "titleEdit": "Edit Measurement",
+    "descriptionCreate": "Create a new measurement",
+    "descriptionEdit": "Update your measurement data",
+    "toastCreate": "Measurement created 🎉",
+    "toastUpdate": "Measurement updated 🎉",
+    "toastDelete": "Measurement deleted successfully. 🗑️",
+    "labels": {
+      "serial": "Serial",
+      "temperature": "Temperature (°C)",
+      "pressure": "Pressure (Pa)",
+      "length": "Length (m)",
+      "noise": "Noise (dB)",
+      "sensorA": "Sensor A",
+      "sensorB": "Sensor B",
+      "sensorC": "Sensor C",
+      "sensorD": "Sensor D",
+      "sensorE": "Sensor E",
+      "sensorF": "Sensor F",
+      "sensorG": "Sensor G"
+    },
+    "buttons": {
+      "delete": "Delete Measurement",
+      "submitCreate": "Create Measurement",
+      "submitEdit": "Update Measurement"
+    }
+  },
+  "languageDropdown": {
+    "chooseLanguage": "Choose Language",
+    "english": "English",
+    "swedish": "Swedish",
+    "tooltipEnglish": "Switch to English",
+    "tooltipSwedish": "Switch to Swedish",
+    "shortEnglish": "ENG",
+    "shortSwedish": "SWE"
+  },
+  "measurementSelector": {
+    "selectSerial": "Select a serial",
+    "searchPlaceholder": "Search by serial..",
+    "noMeasurementFound": "No measurement found.",
+    "measurementsGroupTitle": "Measurements"
+  }
+
+}
+  
