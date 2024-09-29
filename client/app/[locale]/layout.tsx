@@ -25,7 +25,7 @@ export default async function RootLayout({
   params: { locale: string };
 
 }) {
-  const messages =  await getMessages();
+  const messages = await getMessages();
 
 
 
