@@ -128,7 +128,62 @@
     "searchPlaceholder": "Search by serial..",
     "noMeasurementFound": "No measurement found.",
     "measurementsGroupTitle": "Measurements"
+  },
+  "techItems": {
+    "nextjs": {
+      "title": "Next.js",
+      "description": "Next.js provides a powerful framework for building server-rendered React applications with ease."
+    },
+    "shadcn": {
+      "title": "ShadCN",
+      "description": "ShadCN is a design system that provides codes without downloading any heavy libraries."
+    },
+    "tailwindcss": {
+      "title": "TailwindCSS",
+      "description": "TailwindCSS is a CSS framework that provides utilities for building without writing custom CSS."
+    },
+    "typescript": {
+      "title": "TypeScript",
+      "description": "TypeScript is a superset of JavaScript that provides static typing and improved developer experience."
+    },
+    "redux": {
+      "title": "Redux",
+      "description": "Redux is a immutable global state management library."
+    },
+    "reacthookform": {
+      "title": "React Hook Form",
+      "description": "React Hook Form simplifies form management by handling form state."
+    },
+    "zod": {
+      "title": "Zod",
+      "description": "Zod is a validation library used to validate forms and data."
+    },
+    "framermotion": {
+      "title": "Framer Motion",
+      "description": "Framer Motion provides smooth animations."
+    },
+    "recharts": {
+      "title": "Recharts",
+      "description": "Recharts is a charting library that provides a simple way to create charts."
+    },
+    "axios": {
+      "title": "Axios",
+      "description": "Axios is an HTTP client for making requests to and from APIs."
+    },
+    "clerk": {
+      "title": "Clerk",
+      "description": "Clerk provides authentication and user management."
+    },
+    "tanstacktable": {
+      "title": "Tanstack table",
+      "description": "Tanstack table is a headless UI library for building tables."
+    },
+    "spring": {
+      "title": "Spring",
+      "description": "Spring is a Java framework that provides a way to build backend applications."
+    }
   }
+
 
 }
   
