@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/ui/alert-modal";
 import { MeasurementData } from "@/types/types";
 import { formSchema } from "@/schemas/measurement";
@@ -39,7 +39,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const t = useTranslations("measurementForm");
-
+  const { locale } = useParams();
   const title = initialMeasurement ? t("titleEdit") : t("titleCreate");
   const description = initialMeasurement
     ? t("descriptionEdit")
@@ -87,7 +87,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
       } else {
         await axios.post("http://localhost:8080/api/measurements", requestData);
       }
-      router.push("/measurement/view");
+      router.push(`/${locale}/measurement/view`); 
       router.refresh();
       toast.success(toastMessage);
     } catch (error) {
@@ -104,7 +104,7 @@ export const MeasurementForm: React.FC<MeasurementFormProps> = ({
         await axios.delete(
           `http://localhost:8080/api/measurements/${initialMeasurement.id}`,
         );
-        router.push("/measurement/view");
+        router.push(`/${locale}/measurement/view`); 
         router.refresh();
         toast.success(t("toastDelete"));
       }
