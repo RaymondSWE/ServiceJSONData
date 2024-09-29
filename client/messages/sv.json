@@ -138,11 +138,60 @@
             "searchPlaceholder": "Sök efter serienummer..",
             "noMeasurementFound": "Ingen mätning hittades.",
             "measurementsGroupTitle": "Mätningar"
+          },
+          "techItems": {
+            "nextjs": {
+              "title": "Next.js",
+              "description": "Next.js är ett ramverk, byggd på react som erbjuder inbyggd routing och massa andra funktioner."
+            },
+            "shadcn": {
+              "title": "ShadCN",
+              "description": "ShadCN är ett designsystem som ger ut kod utan att ladda ner tunga bibliotek."
+            },
+            "tailwindcss": {
+              "title": "TailwindCSS",
+              "description": "TailwindCSS är ett CSS-ramverk som erbjuder verktyg för att bygga utan att skriva anpassad CSS."
+            },
+            "typescript": {
+              "title": "TypeScript",
+              "description": "TypeScript är en superset av JavaScript som erbjuder statisk typning och förbättrad utvecklarupplevelse."
+            },
+            "redux": {
+              "title": "Redux",
+              "description": "Redux är ett bibliotek för oföränderlig global state management."
+            },
+            "reacthookform": {
+              "title": "React Hook Form",
+              "description": "React Hook Form förenklar formulärhantering genom att hantera formulärens tillstånd."
+            },
+            "zod": {
+              "title": "Zod",
+              "description": "Zod är ett valideringsbibliotek som används för att validera formulär och data."
+            },
+            "framermotion": {
+              "title": "Framer Motion",
+              "description": "Framer Motion erbjuder smidiga animationer."
+            },
+            "recharts": {
+              "title": "Recharts",
+              "description": "Recharts är ett bibliotek för diagram som ger ett enkelt sätt att skapa diagram."
+            },
+            "axios": {
+              "title": "Axios",
+              "description": "Axios är en HTTP-klient för att göra förfrågningar till och från API:er."
+            },
+            "clerk": {
+              "title": "Clerk",
+              "description": "Clerk som erbjuder autentisering och användarhantering."
+            },
+            "tanstacktable": {
+              "title": "Tanstack table",
+              "description": "Tanstack table är ett UI headless bibliketek för att erbjuda funktionalitet till tabeller."
+            },
+            "spring": {
+              "title": "Spring",
+              "description": "Spring är ett Java-ramverk som erbjuder ett sätt att bygga backend-applikationer."
+            }
           }
-        
-        
-      
-    
-    
 }
   
