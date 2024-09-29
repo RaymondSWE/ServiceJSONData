@@ -181,6 +181,14 @@
     "spring": {
       "title": "Spring",
       "description": "Spring is a Java framework that provides a way to build backend applications."
+    },
+    "docker": {
+      "title": "Docker",
+      "description": "Docker is a platform that provides containerization for running applications in isolated environments."
+    },
+    "mysql": {
+      "title": "MySQL",
+      "description": "MySQL is a relational database management system used for storing and managing data."
     }
   }
 

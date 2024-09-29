@@ -68,7 +68,17 @@ export const useTechItems = () => {
       title: t('spring.title'),
       description: t('spring.description'),
       imageUrl: '/img/techicon/spring.png',
-    }
+    },
+    {
+      title: t('docker.title'),
+      description: t('docker.description'),
+      imageUrl: '/img/techicon/docker.png',
+    },
+    {
+      title: t('mysql.title'),
+      description: t('mysql.description'),
+      imageUrl: '/img/techicon/mysql.png',
+    },
   ];
 
   return techItems;

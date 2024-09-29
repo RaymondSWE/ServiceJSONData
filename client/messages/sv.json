@@ -191,7 +191,15 @@
             "spring": {
               "title": "Spring",
               "description": "Spring är ett Java-ramverk som erbjuder ett sätt att bygga backend-applikationer."
-            }
+            },
+            "docker": {
+            "title": "Docker",
+            "description": "Docker är en plattform som har containerisering för att köra applikationer i isolerade miljöer."
+            },
+            "mysql": {
+            "title": "MySQL",
+            "description": "MySQL är ett relationsdatabashanteringssystem som används för att lagra och hantera data."
+          }
           }
 }
   
