@@ -24,11 +24,11 @@ import {
 } from "@clerk/nextjs";
 
 interface MenuProps {
-  isOpen: boolean | undefined;
+  isSidebarOpen: boolean | undefined;
   locale: string;
 }
 
-export function SidebarMenu({ isOpen, locale }: MenuProps) {
+export function SidebarMenu({ isSidebarOpen, locale }: MenuProps) {
   const pathname = usePathname();
   const { user } = useUser();
   const menuList = getMenuList(pathname, locale);
@@ -41,11 +41,11 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
         <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
-              {(isOpen && groupLabel) || isOpen === undefined ? (
+              {(isSidebarOpen && groupLabel) || isSidebarOpen === undefined ? (
                 <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
                   {groupLabel}
                 </p>
-              ) : !isOpen && isOpen !== undefined && groupLabel ? (
+              ) : !isSidebarOpen && isSidebarOpen !== undefined && groupLabel ? (
                 <TooltipProvider>
                   <Tooltip delayDuration={100}>
                     <TooltipTrigger className="w-full">
@@ -75,14 +75,14 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                             >
                               <Link href={href}>
                                 <span
-                                  className={cn(isOpen === false ? "" : "mr-4")}
+                                  className={cn(isSidebarOpen === false ? "" : "mr-4")}
                                 >
                                   <Icon size={18} />
                                 </span>
                                 <p
                                   className={cn(
                                     "max-w-[200px] truncate",
-                                    isOpen === false
+                                    isSidebarOpen === false
                                       ? "-translate-x-96 opacity-0"
                                       : "translate-x-0 opacity-100",
                                   )}
@@ -92,7 +92,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                               </Link>
                             </Button>
                           </TooltipTrigger>
-                          {isOpen === false && (
+                          {isSidebarOpen === false && (
                             <TooltipContent side="right">
                               {label}
                             </TooltipContent>
@@ -107,7 +107,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                         label={label}
                         active={active}
                         submenus={submenus ?? []}
-                        isOpen={isOpen}
+                        isSidebarOpen={isSidebarOpen}
                       />
                     </div>
                   ),
@@ -121,7 +121,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                   <SignedIn>
                     <div className="w-full flex justify-start items-center ml-4">
                       <UserButton />
-                      {isOpen && (
+                      {isSidebarOpen && (
                         <p className="ml-4 font-medium truncate max-w-[150px]">
                           {user?.fullName}
                         </p>
@@ -136,7 +136,7 @@ export function SidebarMenu({ isOpen, locale }: MenuProps) {
                       <SignInButton />
                     </Button>
                   </SignedOut>
-                  {isOpen === false && (
+                  {isSidebarOpen === false && (
                     <TooltipContent side="right">Sign out</TooltipContent>
                   )}
                 </Tooltip>

@@ -20,10 +20,10 @@ import { useTranslations } from "next-intl";
 import { useEffect } from "react"; 
 
 interface LanguageDropdownProps {
-  isOpen: boolean;
+  isSidebarOpen: boolean;
 }
 
-export const LanguageDropdown = ({ isOpen }: LanguageDropdownProps) => {
+export const LanguageDropdown = ({ isSidebarOpen }: LanguageDropdownProps) => {
   const { locale } = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -58,13 +58,13 @@ export const LanguageDropdown = ({ isOpen }: LanguageDropdownProps) => {
                 className={cn("space-x-2 text-sm")}
               >
                 <Globe2Icon className="w-5 h-5" />
-                <span className={cn(isOpen ? "block" : "hidden")}>
+                <span className={cn(isSidebarOpen ? "block" : "hidden")}>
                   {currentLocale === "en" ? t("english") : t("swedish")}
                 </span>
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
-          {!isOpen &&  (
+          {!isSidebarOpen &&  (
             <TooltipContent
               side="right"
               sideOffset={5}
@@ -80,13 +80,13 @@ export const LanguageDropdown = ({ isOpen }: LanguageDropdownProps) => {
           <DropdownMenuItem
             onClick={() => handleLocaleChange("en")}
           >
-            {isOpen ? t("english") : t("shortEnglish")}
+            {isSidebarOpen ? t("english") : t("shortEnglish")}
             {currentLocale === "en" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => handleLocaleChange("sv")}
           >
-            {isOpen ? t("swedish") : t("shortSwedish")}
+            {isSidebarOpen ? t("swedish") : t("shortSwedish")}
             {currentLocale === "sv" && <CheckIcon className="w-4 h-4 ml-auto" />}
           </DropdownMenuItem>
           <DropdownMenuArrow className="fill-border" />

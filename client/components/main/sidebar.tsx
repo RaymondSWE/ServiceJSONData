@@ -52,10 +52,10 @@ const Sidebar = () => {
         </Button>
       </div>
       <div className="flex mt-12 justify-center">
-        <LanguageDropdown isOpen={isSidebarOpen}  />
+        <LanguageDropdown isSidebarOpen={isSidebarOpen}  />
       </div>
       <div className="relative h-full flex flex-col px-3 overflow-y-auto">
-        <SidebarMenu isOpen={isSidebarOpen} locale={locale} />
+        <SidebarMenu isSidebarOpen={isSidebarOpen} locale={locale} />
       </div>
     </aside>
   );

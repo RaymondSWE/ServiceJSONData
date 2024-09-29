@@ -38,7 +38,7 @@ interface CollapseMenuButtonProps {
   label: string;
   active: boolean;
   submenus: Submenu[];
-  isOpen: boolean | undefined;
+  isSidebarOpen: boolean | undefined;
 }
 
 export function CollapseMenuButton({
@@ -46,12 +46,12 @@ export function CollapseMenuButton({
   label,
   active,
   submenus,
-  isOpen,
+  isSidebarOpen,
 }: CollapseMenuButtonProps) {
   const isSubmenuActive = submenus.some((submenu) => submenu.active);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(isSubmenuActive);
 
-  return isOpen ? (
+  return isSidebarOpen ? (
     <Collapsible
       open={isCollapsed}
       onOpenChange={setIsCollapsed}
@@ -73,7 +73,7 @@ export function CollapseMenuButton({
               <p
                 className={cn(
                   "max-w-[150px] truncate",
-                  isOpen
+                  isSidebarOpen
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-96 opacity-0",
                 )}
@@ -84,7 +84,7 @@ export function CollapseMenuButton({
             <div
               className={cn(
                 "whitespace-nowrap",
-                isOpen
+                isSidebarOpen
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-96 opacity-0",
               )}
@@ -112,7 +112,7 @@ export function CollapseMenuButton({
               <p
                 className={cn(
                   "max-w-[170px] truncate",
-                  isOpen
+                  isSidebarOpen
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-96 opacity-0",
                 )}
@@ -136,13 +136,13 @@ export function CollapseMenuButton({
               >
                 <div className="w-full items-center flex justify-between">
                   <div className="flex items-center">
-                    <span className={cn(isOpen === false ? "" : "mr-4")}>
+                    <span className={cn(isSidebarOpen === false ? "" : "mr-4")}>
                       <Icon size={18} />
                     </span>
                     <p
                       className={cn(
                         "max-w-[200px] truncate",
-                        isOpen === false ? "opacity-0" : "opacity-100",
+                        isSidebarOpen === false ? "opacity-0" : "opacity-100",
                       )}
                     >
                       {label}

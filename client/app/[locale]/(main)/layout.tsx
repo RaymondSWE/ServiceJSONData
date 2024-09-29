@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
-  const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+  const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isSidebarOpen);
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
 
