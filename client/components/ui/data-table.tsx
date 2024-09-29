@@ -23,6 +23,13 @@ import {
 } from "@/components/ui/table";
 import { useTranslations } from "next-intl";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -74,7 +81,7 @@ export function DataTable<TData, TValue>({
       <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns
+              {t("columns")}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -167,18 +174,21 @@ export function DataTable<TData, TValue>({
         >
           {t("next")}
         </Button>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={e => {
-            table.setPageSize(Number(e.target.value))
-          }}
+        <Select
+          onValueChange={(value) => table.setPageSize(Number(value))}
+          defaultValue={pagination.pageSize.toString()}
         >
-          {[5, 10, 20, 30, 50].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger className="w-[50px]">
+            <SelectValue placeholder={t("pageSize")} />
+          </SelectTrigger>
+          <SelectContent>
+            {[5, 10, 20, 30].map((size) => (
+              <SelectItem key={size} value={size.toString()}>
+                {size}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

@@ -76,7 +76,8 @@
     "searchPlaceholder": "Search..",
     "noResults": "No results.",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "columns": "Columns"
   },
   "alertModal": {
     "title": "Are you sure?",

@@ -86,7 +86,8 @@
       "searchPlaceholder": "Sök..",
       "noResults": "Inga resultat.",
       "previous": "Föregående",
-      "next": "Nästa"
+      "next": "Nästa",
+      "columns": "Kolumner"
     },
       "alertModal": {
         "title": "Är du säker?",
