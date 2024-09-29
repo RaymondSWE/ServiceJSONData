@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 interface SidebarToggleProps {
-  isOpen: boolean | undefined;
+  isSidebarOpen: boolean | undefined;
   setIsOpen?: () => void;
 }
 
-export function SidebarToggle({ isOpen, setIsOpen }: SidebarToggleProps) {
+export function SidebarToggle({ isSidebarOpen, setIsOpen }: SidebarToggleProps) {
   return (
     <div className="invisible lg:visible absolute top-[12px] -right-[16px] z-20">
       <Button
@@ -20,7 +20,7 @@ export function SidebarToggle({ isOpen, setIsOpen }: SidebarToggleProps) {
         <ChevronLeft
           className={cn(
             "h-4 w-4 transition-transform ease-in-out duration-700",
-            isOpen === false ? "rotate-180" : "rotate-0",
+            isSidebarOpen === false ? "rotate-180" : "rotate-0",
           )}
         />
       </Button>
