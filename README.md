@@ -11,11 +11,16 @@ This app also supports features like internationalization, Global state managmen
 
 ## 🎥 Demonstrations
 
-Here are some GIFs showcasing the core functionality of the application:
+showcasing the core functionality of the application:
 
 ###  Showing Headless UI Table
-![Showing Headless UI Table](https://gyazo.com/76708c5a051e5316e438f1e1968487ec)
+![Showing Headless UI Table](https://i.gyazo.com/76708c5a051e5316e438f1e1968487ec.gif)
 
+### Video of the app
+[![Watch the demo](https://img.youtube.com/vi/xgjgKXiGaOE/0.jpg)](https://www.youtube.com/watch?v=xgjgKXiGaOE)
+
+
+### Showing Form Validation
 
 ## 🛠️ Tech Stack
 
