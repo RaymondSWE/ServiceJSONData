@@ -39,8 +39,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     try {
       setLoading(true);
       await deleteMeasurement(Number(data.id));
-      window.location.reload();
       toast.success(t("deleteSuccess"));
+      await new Promise((resolve) => setTimeout(resolve, 750));
+      window.location.reload();
     } catch (error) {
       handleError(error);
     } finally {

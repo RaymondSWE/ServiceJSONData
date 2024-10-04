@@ -1,6 +1,6 @@
 "use client"; 
 
-import { Home, User, Ruler, LucideIcon } from "lucide-react"; 
+import { Home, Ruler, LucideIcon } from "lucide-react"; 
 import { useTranslations } from "next-intl";
 
 type Submenu = {
@@ -38,14 +38,7 @@ export function getMenuList(pathname: string, locale: string): Group[] {
           icon: Home,
           submenus: []
         },
-        
-        {
-          href: `/${locale}/about`, 
-          label: t('about.label'),
-          active: pathname.includes("/about"),
-          icon: User, 
-          submenus: []
-        },
+      
       ],
     },
     {

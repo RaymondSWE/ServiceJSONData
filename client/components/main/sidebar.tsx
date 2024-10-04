@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { SidebarMenu } from "@/components/main/sidebar-menu";
 import { Button } from "@/components/ui/button";
 import { SidebarToggle } from "@/components/ui/sidebar-toggle";
-import Image from "next/image";
 import { LanguageDropdown } from "../ui/language-dropdown";
 import { useParams } from "next/navigation";
 
@@ -36,26 +35,10 @@ const Sidebar = () => {
           variant="link"
           asChild
         >
-          <div className="flex items-center gap-2 mt-8">
-            <Image
-              src="/img/raysafe.png"
-              alt="Raysafe Logo"
-              width={isSidebarOpen ? 200 : 100}
-              height={isSidebarOpen ? 200 : 100}
-              className={cn(
-                "transition-[transform,opacity,display] ease-in-out duration-300",
-                isSidebarOpen === false
-                  ? "translate-x-0 opacity-100"
-                  : "translate-x-0 opacity-100",
-              )}
-            />
-          </div>
         </Button>
       </div>
-      <div className="flex mt-12 justify-center">
+      <div className="relative h-full flex flex-col px-3 overflow-y-auto mt-12">
         <LanguageDropdown isSidebarOpen={isSidebarOpen}  />
-      </div>
-      <div className="relative h-full flex flex-col px-3 overflow-y-auto">
         <SidebarMenu isSidebarOpen={isSidebarOpen} locale={locale as string} />
       </div>
     </aside>

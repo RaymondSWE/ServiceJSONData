@@ -1,22 +1,52 @@
-As the deadline approached, I rushed through the original README. While this version was completed after deadline it is readable compared to the initial readme.
+# Service JSON Data Validation App
 
-# Hey Anna
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/RaymondSWE/ServiceJSONData/actions)
+[![GitHub stars](https://img.shields.io/github/stars/RaymondSWE/ServiceJSONData)](https://github.com/RaymondSWE/ServiceJSONData/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/RaymondSWE/ServiceJSONData)](https://github.com/RaymondSWE/ServiceJSONData/network)
+[![GitHub license](https://img.shields.io/github/license/RaymondSWE/ServiceJSONData)](https://github.com/RaymondSWE/ServiceJSONData/blob/main/LICENSE)
 
-I created a UML diagram to illustrate how I structured the solution and planned to solve the problem step by step. Please send me your GitHub username so I can add you to the repository. I want to ensure transparency regarding the timing and that everything was done within the given threshold. The backend framework is SpringBoot and a dependency called Lombok, Lombok is a dependency that helps to reduce boilerplate codes, such as getters/setters, no argument constructors, and argument constructors and has a lot more different annotations to reduce boilerplate code.
+This project is a validation-focused web application that handles JSON data with client-side and server-side validation. The client-side validation is implemented using Zod, and the server-side validation is managed via Spring Boot. 
 
-The code is structured in a straightforward manner:
-- **Models**: Hold the data 
-- **Service**: Contains the business logic, including validation.
-- **Custom Exception**: Handles errors by sending objects, and I used the **Builder design pattern** to implement these exception. We could discuss more about the different design patterns in the interview.
-- **Controller**: Handles the  HTTP Request and Responses
+This app also supports features like internationalization, Global state managment,  headless UI components, reusable forms, and responsive design. 
 
-Everything has been tested using **Postman**. The URL for testing is:
-**localhost:8080/api/validate**
+## 🎥 Demonstrations
 
-The POST-request should include a JSON body containing **MeasurementData** and a nested object called **RawSensordata**, there is an example file in the root directory to find an example of what to send in, file is called [sampleJSON.json](https://github.com/RaymondSWE/ServiceJSONData/blob/main/SampleJSON.json)
+Here are some GIFs showcasing the core functionality of the application:
+
+###  Showing Headless UI Table
+![Showing Headless UI Table](https://gyazo.com/76708c5a051e5316e438f1e1968487ec)
 
 
+## 🛠️ Tech Stack
 
-Best regards,
-Raman
+- **Next.js** (Frontend Framework)
+- **React** (UI Library)
+- **TypeScript** (Static Typing)
+- **Zod** (Client-side Validation)
+- **Spring Boot** (Server-side Validation)
+- **ShadCN UI** (Design System)
+- **TailwindCSS** (Utility-first CSS)
+- **React Hook Form** (Form Management)
+- **Framer Motion** (Animations)
+- **Recharts** (Charts)
+- **Redux Toolkit** (State Management)
+- **Axios** (HTTP Client)
+- **Tanstack Table** (Headless Table UI)
+- **Docker** (Containerization)
+- **MySQL** (Database)
+- **Next.js Internationalization** (Multi-language Support)
+- **Lombok** (Java Library) 
+- 
+
+## ⚙️ Key Features
+
+- **Client-Side Validation**: Zod handles form and data validation on the client-side, ensuring accurate and structured data.
+- **Server-Side Validation**: Spring Boot provides robust server-side validation to maintain data integrity.
+- **Redux**: Redux to manage global state and data flow.
+- **Internationalization**: Multi-language support with Next.js internationalization features.
+- **Reusable Forms**: React Hook Form is used for building reusable and scalable forms.
+- **Responsive Design**: TailwindCSS ensures responsive, mobile-friendly layouts.
+- **Smooth Animations**: Framer Motion is used to create engaging animations.
+- **Headless UI**: Leverages headless UI components like Tanstack Table for flexibility and customization.
+  
 
